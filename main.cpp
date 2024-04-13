@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <mbed.h>
+#include <IRSensorDigital.h>
 
 int main() {
     
@@ -13,6 +14,9 @@ int main() {
     
     DigitalIn button(BUTTON1);
     DigitalOut led(LED1);
+
+    DigitalIn testIrDigital(PB_2);
+    IRSensorDigital TestSignal(testIrDigital);
     
     
     ThisThread::sleep_for(500ms);
@@ -20,7 +24,8 @@ int main() {
     
     while (true) {
         
-        led = !led;
+        //led = !led;
+        printf("Wert: %d\r\n", TestSignal.read());
         
 
         ThisThread::sleep_for(250ms);

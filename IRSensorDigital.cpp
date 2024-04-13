@@ -27,7 +27,7 @@ IRSensorDigital::~IRSensorDigital() {}
  * This method reads from the distance sensor.
  * @return a distance value, given in [m].
  */
-float IRSensorDigital::read() {
+bool IRSensorDigital::read() {
        
     return distanceOk;
 }

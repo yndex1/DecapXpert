@@ -20,7 +20,7 @@ class IRSensorDigital {
         
                 IRSensorDigital(DigitalIn& distanceOk);
         virtual ~IRSensorDigital();
-        float   read();
+        bool   read();
                 operator float();
         
     private:
