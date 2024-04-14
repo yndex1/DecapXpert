@@ -1,5 +1,16 @@
 [
     {
+        "module": "IRSensorDigital.o",
+        "size": {
+            ".text": 88,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 0,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
         "module": "[lib]\\c_w.l",
         "size": {
             ".text": 4162,
@@ -46,7 +57,7 @@
     {
         "module": "main.o",
         "size": {
-            ".text": 160,
+            ".text": 170,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -90,7 +101,7 @@
     {
         "module": "mbed-os\\hal",
         "size": {
-            ".text": 1430,
+            ".text": 1484,
             ".data": 4,
             ".bss": 58,
             ".text-delta": 0,
@@ -101,7 +112,7 @@
     {
         "module": "mbed-os\\platform",
         "size": {
-            ".text": 7525,
+            ".text": 7579,
             ".data": 64,
             ".bss": 340,
             ".text-delta": 0,
@@ -135,7 +146,7 @@
         "summary": {
             "static_ram": 9354,
             "static_ram_delta": 0,
-            "total_flash": 32047,
+            "total_flash": 32253,
             "total_flash_delta": 0
         }
     }
