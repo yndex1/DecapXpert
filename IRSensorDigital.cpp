@@ -11,7 +11,7 @@ using namespace std;
 
 /**
  * Creates and initialises the driver to read the distance sensors.
- * @param distanceOk the analog input to read a distance value from.
+ * @param distanceOk the digital input to read value from.
  */
 IRSensorDigital::IRSensorDigital(DigitalIn& distanceOk) : distanceOk(distanceOk) {
     
