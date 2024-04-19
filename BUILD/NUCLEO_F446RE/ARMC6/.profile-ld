@@ -19,6 +19,7 @@
     "symbols": [
         "ARM_MATH_CM4",
         "COMPONENT_FLASHIAP=1",
+        "COMPONENT_SD=1",
         "DEVICE_ANALOGIN=1",
         "DEVICE_ANALOGOUT=1",
         "DEVICE_CAN=1",
@@ -45,7 +46,7 @@
         "DEVICE_STDIO_MESSAGES=1",
         "DEVICE_USTICKER=1",
         "DEVICE_WATCHDOG=1",
-        "MBED_BUILD_TIMESTAMP=1713532529.0374367",
+        "MBED_BUILD_TIMESTAMP=1713536016.8947086",
         "STM32F446xx",
         "TARGET_CORTEX",
         "TARGET_CORTEX_M",

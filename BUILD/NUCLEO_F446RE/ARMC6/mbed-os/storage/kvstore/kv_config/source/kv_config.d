@@ -13,10 +13,15 @@ BUILD\NUCLEO_F446RE\ARMC6\mbed-os\storage\kvstore\kv_config\source\kv_config.o: 
   mbed-os\rtos\include\rtos\internal\mbed_rtos1_types.h \
   mbed-os\cmsis\CMSIS_5\CMSIS\RTOS2\RTX\Include1\cmsis_os.h \
   mbed-os\cmsis\CMSIS_5\CMSIS\RTOS2\RTX\Include\rtx_os.h \
+  mbed-os\cmsis\CMSIS_5\CMSIS\RTOS2\RTX\Include\rtx_def.h \
+  mbed-os\cmsis\device\RTE\include\RTE_Components.h \
+  mbed-os\cmsis\device\rtos\include\mbed_rtx_conf.h \
+  mbed-os\targets\TARGET_STM\mbed_rtx.h \
+  mbed-os\cmsis\device\mbed_cmsis_conf.h \
+  mbed-os\cmsis\CMSIS_5\CMSIS\RTOS2\RTX\Config\RTX_Config.h \
   mbed-os\rtos\include\rtos\internal\mbed_rtos_storage.h \
   mbed-os\cmsis\device\rtos\include\mbed_rtx_storage.h \
   mbed-os\cmsis\device\rtos\include\mbed_rtx_conf.h \
-  mbed-os\targets\TARGET_STM\mbed_rtx.h \
   mbed-os\rtos\include\rtos\Kernel.h \
   mbed-os\platform\include\platform\mbed_toolchain.h \
   mbed-os\platform\include\platform\mbed_preprocessor.h \
@@ -150,7 +155,6 @@ BUILD\NUCLEO_F446RE\ARMC6\mbed-os\storage\kvstore\kv_config\source\kv_config.o: 
   mbed-os\platform\include\platform\FileHandle.h \
   mbed-os\platform\include\platform\PlatformMutex.h \
   mbed-os\storage\filesystem\fat\ChaN\ff.h \
-  mbed-os\storage\filesystem\fat\ChaN\integer.h \
   mbed-os\storage\filesystem\fat\ChaN\ffconf.h \
   mbed-os\storage\filesystem\littlefs\include\littlefs\LittleFileSystem.h \
   mbed-os\storage\filesystem\littlefs\littlefs\lfs.h \
@@ -167,4 +171,29 @@ BUILD\NUCLEO_F446RE\ARMC6\mbed-os\storage\kvstore\kv_config\source\kv_config.o: 
   mbed-os\connectivity\mbedtls\include\mbedtls\check_config.h \
   mbed-os\drivers\device_key\include\device_key\DeviceKey.h \
   mbed-os\storage\blockdevice\COMPONENT_FLASHIAP\include\FlashIAP\FlashIAPBlockDevice.h \
-  mbed-os\drivers\include\drivers\FlashIAP.h
+  mbed-os\drivers\include\drivers\FlashIAP.h \
+  mbed-os\storage\blockdevice\COMPONENT_SD\include\SD\SDBlockDevice.h \
+  mbed-os\drivers\include\drivers\SPI.h \
+  mbed-os\hal\include\hal\spi_api.h mbed-os\hal\include\hal\pinmap.h \
+  mbed-os\hal\include\hal\dma_api.h mbed-os\hal\include\hal\buffer.h \
+  mbed-os\drivers\include\drivers\DigitalOut.h \
+  mbed-os\drivers\include\drivers\interfaces\InterfaceDigitalOut.h \
+  mbed-os\hal\include\hal\gpio_api.h \
+  mbed-os\platform\include\platform\CThunk.h \
+  mbed-os\platform\include\platform\internal\CThunkBase.h \
+  mbed-os\platform\include\platform\CircularBuffer.h \
+  mbed-os\platform\include\platform\mbed_critical.h \
+  mbed-os\platform\include\platform\Span.h \
+  mbed-os\platform\include\platform\Transaction.h \
+  mbed-os\drivers\include\drivers\Timer.h \
+  mbed-os\drivers\include\drivers\TickerDataClock.h \
+  mbed-os\hal\include\hal\ticker_api.h \
+  mbed-os\drivers\include\drivers\MbedCRC.h \
+  mbed-os\hal\include\hal\crc_api.h \
+  mbed-os\hal\include\hal\static_pinmap.h \
+  mbed-os\hal\include\hal\spi_api.h mbed-os\hal\include\hal\pwmout_api.h \
+  mbed-os\hal\include\hal\analogin_api.h \
+  mbed-os\hal\include\hal\analogout_api.h \
+  mbed-os\hal\include\hal\i2c_api.h mbed-os\hal\include\hal\serial_api.h \
+  mbed-os\hal\include\hal\qspi_api.h mbed-os\hal\include\hal\ospi_api.h \
+  mbed-os\hal\include\hal\can_api.h mbed-os\hal\include\hal\can_helper.h

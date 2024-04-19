@@ -3,6 +3,7 @@ BUILD\NUCLEO_F446RE\ARMC6\mbed-os\connectivity\nanostack\coap-service\source\coa
   BUILD\NUCLEO_F446RE\ARMC6\mbed_config.h \
   mbed-os\connectivity\nanostack\coap-service\source\include\coap_security_handler.h \
   mbed-os\connectivity\libraries\nanostack-libservice\mbed-client-libservice\ns_types.h \
+  mbed-os\connectivity\mbedtls\include\mbedtls\version.h \
   mbed-os\connectivity\mbedtls\include\mbedtls\config.h \
   mbed-os\connectivity\mbedtls\platform\inc\platform_mbed.h \
   mbed-os\connectivity\mbedtls\include\mbedtls\config-no-entropy.h \

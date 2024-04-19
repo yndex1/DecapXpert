@@ -102,6 +102,8 @@
 #define MBED_CONF_FAT_CHAN_FF_NORTC_MDAY                                      1                                                                                                // set by library:fat_chan
 #define MBED_CONF_FAT_CHAN_FF_NORTC_MON                                       1                                                                                                // set by library:fat_chan
 #define MBED_CONF_FAT_CHAN_FF_NORTC_YEAR                                      2017                                                                                             // set by library:fat_chan
+#define MBED_CONF_FAT_CHAN_FF_PRINT_FLOAT                                     0                                                                                                // set by library:fat_chan
+#define MBED_CONF_FAT_CHAN_FF_PRINT_LLI                                       0                                                                                                // set by library:fat_chan
 #define MBED_CONF_FAT_CHAN_FF_SFN_BUF                                         12                                                                                               // set by library:fat_chan
 #define MBED_CONF_FAT_CHAN_FF_STRF_ENCODE                                     3                                                                                                // set by library:fat_chan
 #define MBED_CONF_FAT_CHAN_FF_STR_VOLUME_ID                                   0                                                                                                // set by library:fat_chan
@@ -261,6 +263,7 @@
 #define MBED_CONF_PLATFORM_CALLBACK_NONTRIVIAL                                0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_CRASH_CAPTURE_ENABLED                              0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_CTHUNK_COUNT_MAX                                   8                                                                                                // set by library:platform
+#define MBED_CONF_PLATFORM_DEEPSLEEP_STATS_VERBOSE                            0                                                                                                // set by library:platform[STM]
 #define MBED_CONF_PLATFORM_DEFAULT_SERIAL_BAUD_RATE                           9600                                                                                             // set by library:platform
 #define MBED_CONF_PLATFORM_ERROR_ALL_THREADS_INFO                             0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_ERROR_FILENAME_CAPTURE_ENABLED                     0                                                                                                // set by library:platform
@@ -273,7 +276,7 @@
 #define MBED_CONF_PLATFORM_MINIMAL_PRINTF_ENABLE_FLOATING_POINT               0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_MINIMAL_PRINTF_SET_FLOATING_POINT_MAX_DECIMALS     6                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_POLL_USE_LOWPOWER_TIMER                            0                                                                                                // set by library:platform
-#define MBED_CONF_PLATFORM_STDIO_BAUD_RATE                                    9600                                                                                             // set by library:platform
+#define MBED_CONF_PLATFORM_STDIO_BAUD_RATE                                    115200                                                                                           // set by application[*]
 #define MBED_CONF_PLATFORM_STDIO_BUFFERED_SERIAL                              0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_STDIO_CONVERT_NEWLINES                             1                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_STDIO_CONVERT_TTY_NEWLINES                         1                                                                                                // set by library:platform
@@ -300,6 +303,7 @@
 #define MBED_CONF_RM1000_AT_BAUDRATE                                          230400                                                                                           // set by library:RM1000_AT
 #define MBED_CONF_RM1000_AT_PROVIDE_DEFAULT                                   0                                                                                                // set by library:RM1000_AT
 #define MBED_CONF_RTOS_API_PRESENT                                            1                                                                                                // set by library:rtos-api
+#define MBED_CONF_RTOS_ENABLE_ALL_RTX_EVENTS                                  0                                                                                                // set by library:rtos
 #define MBED_CONF_RTOS_EVFLAGS_NUM                                            0                                                                                                // set by library:rtos
 #define MBED_CONF_RTOS_IDLE_THREAD_STACK_SIZE                                 512                                                                                              // set by library:rtos
 #define MBED_CONF_RTOS_IDLE_THREAD_STACK_SIZE_DEBUG_EXTRA                     128                                                                                              // set by library:rtos[STM]
@@ -318,6 +322,17 @@
 #define MBED_CONF_S2LP_PROVIDE_DEFAULT                                        0                                                                                                // set by library:s2lp
 #define MBED_CONF_SARA4_PPP_BAUDRATE                                          115200                                                                                           // set by library:SARA4_PPP
 #define MBED_CONF_SARA4_PPP_PROVIDE_DEFAULT                                   0                                                                                                // set by library:SARA4_PPP
+#define MBED_CONF_SD_CMD0_IDLE_STATE_RETRIES                                  5                                                                                                // set by library:sd
+#define MBED_CONF_SD_CMD_TIMEOUT                                              10000                                                                                            // set by library:sd
+#define MBED_CONF_SD_CRC_ENABLED                                              0                                                                                                // set by library:sd
+#define MBED_CONF_SD_FSFAT_SDCARD_INSTALLED                                   1                                                                                                // set by library:sd
+#define MBED_CONF_SD_INIT_FREQUENCY                                           100000                                                                                           // set by library:sd
+#define MBED_CONF_SD_SPI_CLK                                                  ARDUINO_UNO_SPI_SCK                                                                              // set by library:sd
+#define MBED_CONF_SD_SPI_CS                                                   ARDUINO_UNO_SPI_CS                                                                               // set by library:sd
+#define MBED_CONF_SD_SPI_MISO                                                 ARDUINO_UNO_SPI_MISO                                                                             // set by library:sd
+#define MBED_CONF_SD_SPI_MOSI                                                 ARDUINO_UNO_SPI_MOSI                                                                             // set by library:sd
+#define MBED_CONF_SD_TEST_BUFFER                                              8192                                                                                             // set by library:sd
+#define MBED_CONF_SD_TRX_FREQUENCY                                            1000000                                                                                          // set by library:sd
 #define MBED_CONF_STM32_EMAC_ETH_PHY_ADDRESS                                  0                                                                                                // set by library:stm32-emac
 #define MBED_CONF_STM32_EMAC_ETH_PHY_AUTONEGOTIATION                          ETH_AUTONEGOTIATION_ENABLE                                                                       // set by library:stm32-emac
 #define MBED_CONF_STM32_EMAC_ETH_PHY_DUPLEXMODE                               ETH_MODE_FULLDUPLEX                                                                              // set by library:stm32-emac
@@ -365,7 +380,7 @@
 #define MBED_CONF_TARGET_INIT_US_TICKER_AT_BOOT                               1                                                                                                // set by target:MCU_STM32
 #define MBED_CONF_TARGET_INTERNAL_FLASH_UNIFORM_SECTORS                       0                                                                                                // set by target:MCU_STM32F4
 #define MBED_CONF_TARGET_LPTICKER_LPTIM_CLOCK                                 1                                                                                                // set by target:MCU_STM32
-#define MBED_CONF_TARGET_LPUART_CLOCK_SOURCE                                  USE_LPUART_CLK_LSE|USE_LPUART_CLK_PCLK1                                                          // set by target:MCU_STM32
+#define MBED_CONF_TARGET_LPUART_CLOCK_SOURCE                                  USE_LPUART_CLK_LSE|USE_LPUART_CLK_PCLK1|USE_LPUART_CLK_PCLK3                                     // set by target:MCU_STM32
 #define MBED_CONF_TARGET_LSE_AVAILABLE                                        1                                                                                                // set by target:MCU_STM32
 #define MBED_CONF_TARGET_MPU_ROM_END                                          0x0fffffff                                                                                       // set by target:Target
 #define MBED_CONF_TARGET_RTC_CLOCK_SOURCE                                     USE_RTC_CLK_LSE_OR_LSI                                                                           // set by target:MCU_STM32

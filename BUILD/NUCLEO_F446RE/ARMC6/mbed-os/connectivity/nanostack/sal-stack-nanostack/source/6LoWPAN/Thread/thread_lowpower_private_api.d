@@ -17,4 +17,5 @@ BUILD\NUCLEO_F446RE\ARMC6\mbed-os\connectivity\nanostack\sal-stack-nanostack\sou
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\configs\base\cfg_rf_tunnel.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\configs\base\cfg_ws_border_router.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\configs\base\cfg_ws_router.h \
+  mbed-os\connectivity\nanostack\sal-stack-nanostack\source\configs\base\cfg_ws_host.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\nanostack\thread_lowpower_api.h

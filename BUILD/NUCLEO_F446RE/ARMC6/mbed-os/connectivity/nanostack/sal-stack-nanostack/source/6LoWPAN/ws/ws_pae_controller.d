@@ -17,6 +17,7 @@ BUILD\NUCLEO_F446RE\ARMC6\mbed-os\connectivity\nanostack\sal-stack-nanostack\sou
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\configs\base\cfg_rf_tunnel.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\configs\base\cfg_ws_border_router.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\configs\base\cfg_ws_router.h \
+  mbed-os\connectivity\nanostack\sal-stack-nanostack\source\configs\base\cfg_ws_host.h \
   mbed-os\connectivity\libraries\nanostack-libservice\mbed-client-libservice\ns_list.h \
   mbed-os\connectivity\libraries\nanostack-libservice\mbed-client-libservice\ns_types.h \
   mbed-os\platform\mbed-trace\include\mbed-trace\ns_trace.h \
@@ -34,6 +35,8 @@ BUILD\NUCLEO_F446RE\ARMC6\mbed-os\connectivity\nanostack\sal-stack-nanostack\sou
   mbed-os\connectivity\nanostack\sal-stack-nanostack\nanostack\ws_bbr_api.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\Service_Libs\utils\ns_file.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\nanostack\ns_file_system.h \
+  mbed-os\connectivity\nanostack\sal-stack-nanostack\source\Service_Libs\utils\ns_time.h \
+  mbed-os\connectivity\nanostack\sal-stack-nanostack\nanostack\ns_time_api.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\NWK_INTERFACE\Include\protocol.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\NWK_INTERFACE\Include\protocol_abstract.h \
   mbed-os\connectivity\nanostack\sal-stack-nanostack\source\Core\include\ns_address_internal.h \
