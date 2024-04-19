@@ -6,28 +6,29 @@
 
 #include <stdio.h>
 #include <mbed.h>
-#include <IRSensorDigital.h>
+//#include <IRSensorDigital.h>
+#include <EncoderCounter.h>
+#include <SpeedController.h>
+#include <FastPWM.h>
+#include <PM2_Libary.h>
+
+
+AnalogIn IRTest(PC_3);
+float ir_distance_mV = 0.0f;
+
 
 int main() {
-    
-    // create miscellaneous periphery objects
-    
-    DigitalIn button(BUTTON1);
-    DigitalOut led(LED1);
 
-    DigitalIn testIrDigital(PB_2);
-    IRSensorDigital TestSignal(testIrDigital);
-    
-    
-    ThisThread::sleep_for(500ms);
-    
-    
-    while (true) {
-        
-        //led = !led;
-        printf("Wert: %d\r\n", TestSignal.read());
-        
+while(true)
+{
 
-        ThisThread::sleep_for(250ms);
-    }
+ir_distance_mV = 1.0e3f * IRTest.read() * 3.3f;
+
+printf("Distanz: %3.3f \r\n", ir_distance_mV);
+
+ThisThread::sleep_for(250ms);
+
+}
+
+return 1;
 }
