@@ -2,7 +2,7 @@
     {
         "module": "IRSensor.o",
         "size": {
-            ".text": 40,
+            ".text": 98,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -11,9 +11,9 @@
         }
     },
     {
-        "module": "IRSensorDigital.o",
+        "module": "MotorHandler.o",
         "size": {
-            ".text": 22,
+            ".text": 70,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -33,20 +33,9 @@
         }
     },
     {
-        "module": "PM2_Libary\\Servo.o",
-        "size": {
-            ".text": 30,
-            ".data": 0,
-            ".bss": 0,
-            ".text-delta": 0,
-            ".data-delta": 0,
-            ".bss-delta": 0
-        }
-    },
-    {
         "module": "SensorHandler.o",
         "size": {
-            ".text": 30,
+            ".text": 258,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -57,7 +46,7 @@
     {
         "module": "[lib]\\c_w.l",
         "size": {
-            ".text": 11261,
+            ".text": 11325,
             ".data": 16,
             ".bss": 348,
             ".text-delta": 0,
@@ -112,9 +101,9 @@
     {
         "module": "main.o",
         "size": {
-            ".text": 736,
+            ".text": 668,
             ".data": 4,
-            ".bss": 301,
+            ".bss": 217,
             ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
@@ -134,7 +123,7 @@
     {
         "module": "mbed-os\\connectivity",
         "size": {
-            ".text": 407,
+            ".text": 391,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -145,7 +134,7 @@
     {
         "module": "mbed-os\\drivers",
         "size": {
-            ".text": 1046,
+            ".text": 906,
             ".data": 0,
             ".bss": 40,
             ".text-delta": 0,
@@ -199,9 +188,9 @@
     },
     {
         "summary": {
-            "static_ram": 10237,
+            "static_ram": 10153,
             "static_ram_delta": 0,
-            "total_flash": 44319,
+            "total_flash": 44463,
             "total_flash_delta": 0
         }
     }

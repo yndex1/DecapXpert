@@ -1,7 +1,9 @@
 #include <SensorHandler.h>
 
-SensorHandler::SensorHandler(): bDecapState(false), bSolenoidState(false), bDecapDoneState(false)
-{}
+SensorHandler::SensorHandler(): bDecapState(false), bSolenoidState(false), bDecapDoneState(false), AI(PC_2), SensorDecap(AI)
+{
+
+}
 
 
 void SensorHandler::SensorTasks() {
@@ -11,17 +13,12 @@ void SensorHandler::SensorTasks() {
    AnalogIn aiCapAfterDecapping(PC_2);
    AnalogIn aiCapAfterSolenoid(PC_3);
 
-   //Ausgänge definieren
-   DigitalOut bit0(PA_0);
-   DigitalOut bit1(PA_1);
-   DigitalOut bit2(PA_2);
-
    //Sensor Objekte erstellen
    IRSensorDigital senTubeDetection(diTubeDetection);
-   IRSensor senCapAfterDecapping(aiCapAfterDecapping, bit0, bit1, bit2, 0);
-   IRSensor senCapAfterSolenoid(aiCapAfterSolenoid, bit0, bit1, bit2, 1);
+   IRSensor senCapAfterDecapping(aiCapAfterDecapping);
+   IRSensor senCapAfterSolenoid(aiCapAfterSolenoid);
 
-  while (true) {
+  //while (true) {
     bool bTubeDetection = senTubeDetection.read();
     float fCapAfterDecapping = senCapAfterDecapping.read();
     float fCapAfterSolenoid = senCapAfterSolenoid.read();
@@ -32,6 +29,15 @@ void SensorHandler::SensorTasks() {
       bSolenoidState = true;
     if (fCapAfterSolenoid <= 0.5 && fCapAfterSolenoid >= 0)
       bDecapDoneState = true;
-    ThisThread::sleep_for(25ms);
-  }
+    //ThisThread::sleep_for(25ms);
+  //}
+}
+
+void SensorHandler::SensorTest()
+{
+
+    float Wert = 1.0e3f * 3.3f * SensorDecap.read();
+    printf("test: %f", Wert);
+
+
 }

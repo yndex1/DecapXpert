@@ -1,10 +1,7 @@
 //Workshop1
+/*
 #include "mbed.h"
 #include "PM2_Libary.h"
-#include <string>
-#include <MotorHandler.h>
-#include <SensorHandler.h>
-
 
 // logical variable main task
 bool do_execute_main_task = false;  // this variable will be toggled via the user button (blue button) to or not to execute the main task
@@ -28,10 +25,10 @@ DigitalOut extra_led(PB_9);     // create DigitalOut object to command extra led
 // mechanical button
 DigitalIn mechanical_button(PC_5);  // create DigitalIn object to evaluate extra mechanical button, you need to specify the mode for proper usage, see below
 
-//1 - Start
-int iState;
-const int START = 1;
-const int STOP = 10;
+// Sharp GP2Y0A41SK0F, 4-40 cm IR Sensor
+float ir_distance_mV = 0.0f;    // define variable to store measurement
+// ???    // create AnalogIn object to read in infrared distance sensor, 0...3.3V are mapped to 0...1
+AnalogIn ir_analog_in(PC_3);
 
 
 int main()
@@ -43,41 +40,37 @@ int main()
     // start timers
     main_task_timer.start();
 
+    // set pullup mode: add resistor between pin and 3.3 V, so that there is a defined potential
+    mechanical_button.mode(PullUp);
     
     while (true) { // this loop will run forever
 
         main_task_timer.reset();
 
         if (do_execute_main_task) {
-        iState = START;    
+            
+            // read analog input
+            ir_distance_mV = 1.0e3f * ir_analog_in.read() * 3.3f;
+
+            // if the mechanical button is pressed the extra led is blinking
+            if (mechanical_button.read()) {
+                // visual feedback that the main task is executed
+                extra_led = !extra_led;
+            } else {
+                extra_led = 1;
+            }
 
         } else {
-            iState = STOP;
+
+            ir_distance_mV = 0.0f;
+
+            extra_led = 0;
         }
 
-        switch (iState)
-        {
-            case START:{
-                        
-                        SensorHandler SensorHandler;
-                        SensorHandler.SensorTest();
-                        printf("Task START\r\n");
-                        //SensorHandler.SensorTasks();
-                        //MotorHandler MotorHandlerObjekt(class SensorHandler bDecapState, class SensorHandler bSolenoidState, class SensorHandler DecapDoneState);
-
-                        
-                        break;}
-            case STOP:{
-                 //MotorHandler ~MotorHandler();
-                 printf("Task STOP\r\n");
-                 break;}
-
-            default: {printf("Kein Case");}
-        }
         user_led = !user_led;
 
         // do only output via serial what's really necessary (this makes your code slow)
-        printf("state: %i \r\n", iState);
+        printf("IR sensor (mV): %3.3f\r\n", ir_distance_mV);
 
         // read timer and make the main thread sleep for the remaining time span (non blocking)
         int main_task_elapsed_time_ms = std::chrono::duration_cast<std::chrono::milliseconds>(main_task_timer.elapsed_time()).count();
@@ -99,4 +92,4 @@ void user_button_released_fcn()
     if (user_button_elapsed_time_ms > 200) {
         do_execute_main_task = !do_execute_main_task;
     }
-}
+}*/

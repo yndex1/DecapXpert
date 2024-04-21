@@ -18,7 +18,7 @@ class IRSensor {
 
     public:
         
-                IRSensor(AnalogIn& distance, DigitalOut& bit0, DigitalOut& bit1, DigitalOut& bit2, int number);
+                IRSensor(AnalogIn& distance);
         virtual ~IRSensor();
         float   read();
                 operator float();
@@ -26,10 +26,7 @@ class IRSensor {
     private:
         
         AnalogIn&   distance;
-        DigitalOut& bit0;
-        DigitalOut& bit1;
-        DigitalOut& bit2;
-        int         number;
+
 };
 
 #endif /* IR_SENSOR_H_ */

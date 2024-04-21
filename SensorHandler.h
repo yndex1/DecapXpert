@@ -12,9 +12,12 @@ public:
 
   SensorHandler();
   void SensorTasks();
+  void SensorTest();
   bool bDecapState;
   bool bSolenoidState;
   bool bDecapDoneState;
+  AnalogIn AI;
+  IRSensor SensorDecap;
  
 
   

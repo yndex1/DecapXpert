@@ -319,4 +319,6 @@ BUILD\NUCLEO_F446RE\ARMC6\main.o: main.cpp \
   PM2_Libary\SpeedController.h PM2_Libary\LowpassFilter.h \
   PM2_Libary\ThreadFlag.h PM2_Libary\FastPWM\FastPWM.h \
   PM2_Libary\PositionController.h PM2_Libary\RangeFinder\RangeFinder.h \
-  PM2_Libary\RangeFinder\Pulse\Pulse.h
+  PM2_Libary\RangeFinder\Pulse\Pulse.h MotorHandler.h \
+  PM2_Libary\SpeedController.h SensorHandler.h IRSensor.h \
+  IRSensorDigital.h
