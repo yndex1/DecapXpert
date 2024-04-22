@@ -1,4 +1,3 @@
-//Workshop1
 #include "mbed.h"
 #include "PM2_Libary.h"
 #include <string>
@@ -59,17 +58,21 @@ int main()
         {
             case START:{
                         
-                        SensorHandler SensorHandler;
-                        SensorHandler.SensorTest();
-                        printf("Task START\r\n");
+                        //SensorHandler SensorHandler;
+                        //SensorHandler.SensorTest();
+                        //printf("Task START\r\n");
                         //SensorHandler.SensorTasks();
                         //MotorHandler MotorHandlerObjekt(class SensorHandler bDecapState, class SensorHandler bSolenoidState, class SensorHandler DecapDoneState);
+                        AnalogIn Eingang(PC_3);
+                        IRSensor Sensor(Eingang);
+                        float ir_distance_mV = 1.0e3f * Sensor.read() * 3.3f;
+                        printf("IR sensor (mV): %3.3f\r\n", ir_distance_mV);
 
                         
                         break;}
             case STOP:{
                  //MotorHandler ~MotorHandler();
-                 printf("Task STOP\r\n");
+                 //printf("Task STOP\r\n");
                  break;}
 
             default: {printf("Kein Case");}
@@ -77,7 +80,7 @@ int main()
         user_led = !user_led;
 
         // do only output via serial what's really necessary (this makes your code slow)
-        printf("state: %i \r\n", iState);
+        //printf("state: %i \r\n", iState);
 
         // read timer and make the main thread sleep for the remaining time span (non blocking)
         int main_task_elapsed_time_ms = std::chrono::duration_cast<std::chrono::milliseconds>(main_task_timer.elapsed_time()).count();

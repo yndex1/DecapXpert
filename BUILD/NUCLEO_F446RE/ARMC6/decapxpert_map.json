@@ -35,7 +35,7 @@
     {
         "module": "SensorHandler.o",
         "size": {
-            ".text": 258,
+            ".text": 162,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -46,7 +46,7 @@
     {
         "module": "[lib]\\c_w.l",
         "size": {
-            ".text": 11325,
+            ".text": 11261,
             ".data": 16,
             ".bss": 348,
             ".text-delta": 0,
@@ -101,7 +101,7 @@
     {
         "module": "main.o",
         "size": {
-            ".text": 668,
+            ".text": 680,
             ".data": 4,
             ".bss": 217,
             ".text-delta": 0,
@@ -190,7 +190,7 @@
         "summary": {
             "static_ram": 10153,
             "static_ram_delta": 0,
-            "total_flash": 44463,
+            "total_flash": 44315,
             "total_flash_delta": 0
         }
     }
