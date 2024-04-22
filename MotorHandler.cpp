@@ -1,8 +1,14 @@
 #include <MotorHandler.h>
 
 
-MotorHandler:: MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecapDoneState): bStateMotorRoundabout(true), bStateMotorBelt(false), bDecapState(bDecapState), bSolenoidState(bSolenoidState), bDecapDoneState(bDecapDoneState)
+MotorHandler::MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecapDoneState):
+ bStateMotorRoundabout(true), 
+ bStateMotorBelt(false), 
+ bDecapState(bDecapState), 
+ bSolenoidState(bSolenoidState), 
+ bDecapDoneState(bDecapDoneState)
 {
+
 
 }
 
@@ -32,7 +38,6 @@ float k_gear_MBelt = 391.0f / 100.0f;
 float kp = 0.1f;                            // define custom kp, this is the default speed controller gain for gear box 78.125:1
 
 float max_speed_rps = 1.0f;                 // define maximum speed that the position controller is changig the speed, has to be smaller or equal to kn * max_voltage$
-
 SpeedController speedController_MRoundabout(counts_per_turn_MRoundabout * k_gear_MRoundabout, kn_MRoundabout / k_gear_MRoundabout, max_voltage, pwm_MotorRoundabout, encoder_MotorRoundabout);
 SpeedController speedController_MBelt(counts_per_turn_MBelt * k_gear_MBelt, kn_MBelt / k_gear_MBelt, max_voltage, pwm_MotorBelt, encoder_MotorBelt);
 
@@ -41,10 +46,10 @@ SpeedController speedController_MBelt(counts_per_turn_MBelt * k_gear_MBelt, kn_M
     bStateMotorBelt = bDecapState;
 
 
-    if(bStateMotorRoundabout)
+    if(bDecapState)
     {
         enable_motors = 1;
-        //speedController_MRoundabout.setDesiredSpeedRPS(0.5f);
+        speedController_MRoundabout.setDesiredSpeedRPS(0.6f);
     }
     if(bStateMotorBelt == 1){
         //Motor Controller Solenoid startet

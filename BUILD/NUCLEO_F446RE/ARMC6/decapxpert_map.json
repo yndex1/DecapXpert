@@ -11,12 +11,56 @@
         }
     },
     {
-        "module": "MotorHandler.o",
+        "module": "IRSensorDigital.o",
         "size": {
-            ".text": 70,
+            ".text": 88,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "MotorHandler.o",
+        "size": {
+            ".text": 328,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 258,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "PM2_Libary\\EncoderCounter.o",
+        "size": {
+            ".text": 668,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 668,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "PM2_Libary\\FastPWM",
+        "size": {
+            ".text": 694,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 694,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "PM2_Libary\\LowpassFilter.o",
+        "size": {
+            ".text": 736,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 736,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -24,18 +68,40 @@
     {
         "module": "PM2_Libary\\PositionController.o",
         "size": {
-            ".text": 16,
+            ".text": 126,
             ".data": 0,
             ".bss": 0,
-            ".text-delta": 0,
+            ".text-delta": 110,
             ".data-delta": 0,
             ".bss-delta": 0
         }
     },
     {
+        "module": "PM2_Libary\\SpeedController.o",
+        "size": {
+            ".text": 804,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 804,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "PM2_Libary\\ThreadFlag.o",
+        "size": {
+            ".text": 180,
+            ".data": 0,
+            ".bss": 4,
+            ".text-delta": 180,
+            ".data-delta": 0,
+            ".bss-delta": 4
+        }
+    },
+    {
         "module": "SensorHandler.o",
         "size": {
-            ".text": 162,
+            ".text": 266,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -46,10 +112,10 @@
     {
         "module": "[lib]\\c_w.l",
         "size": {
-            ".text": 11261,
+            ".text": 11323,
             ".data": 16,
             ".bss": 348,
-            ".text-delta": 0,
+            ".text-delta": 22,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -57,10 +123,21 @@
     {
         "module": "[lib]\\fz_wm.l",
         "size": {
-            ".text": 272,
+            ".text": 2614,
             ".data": 0,
             ".bss": 0,
-            ".text-delta": 0,
+            ".text-delta": 2580,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "[lib]\\libcpp_w.l",
+        "size": {
+            ".text": 1,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 1,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -79,10 +156,10 @@
     {
         "module": "[lib]\\m_wm.l",
         "size": {
-            ".text": 48,
+            ".text": 664,
             ".data": 0,
             ".bss": 0,
-            ".text-delta": 0,
+            ".text-delta": 616,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -101,10 +178,10 @@
     {
         "module": "main.o",
         "size": {
-            ".text": 680,
+            ".text": 858,
             ".data": 4,
             ".bss": 217,
-            ".text-delta": 0,
+            ".text-delta": 8,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -112,10 +189,10 @@
     {
         "module": "mbed-os\\cmsis",
         "size": {
-            ".text": 9708,
+            ".text": 11256,
             ".data": 168,
             ".bss": 6738,
-            ".text-delta": 0,
+            ".text-delta": 1548,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -123,10 +200,10 @@
     {
         "module": "mbed-os\\connectivity",
         "size": {
-            ".text": 391,
+            ".text": 401,
             ".data": 0,
             ".bss": 0,
-            ".text-delta": 0,
+            ".text-delta": 10,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -134,10 +211,10 @@
     {
         "module": "mbed-os\\drivers",
         "size": {
-            ".text": 906,
+            ".text": 1596,
             ".data": 0,
             ".bss": 40,
-            ".text-delta": 0,
+            ".text-delta": 690,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -145,10 +222,10 @@
     {
         "module": "mbed-os\\hal",
         "size": {
-            ".text": 1912,
+            ".text": 2164,
             ".data": 4,
             ".bss": 58,
-            ".text-delta": 0,
+            ".text-delta": 250,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -156,10 +233,10 @@
     {
         "module": "mbed-os\\platform",
         "size": {
-            ".text": 5899,
+            ".text": 5915,
             ".data": 64,
             ".bss": 340,
-            ".text-delta": 0,
+            ".text-delta": 16,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -167,10 +244,10 @@
     {
         "module": "mbed-os\\rtos",
         "size": {
-            ".text": 430,
+            ".text": 1498,
             ".data": 0,
             ".bss": 0,
-            ".text-delta": 0,
+            ".text-delta": 1068,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -178,20 +255,20 @@
     {
         "module": "mbed-os\\targets",
         "size": {
-            ".text": 12122,
+            ".text": 15677,
             ".data": 8,
-            ".bss": 1124,
-            ".text-delta": 0,
+            ".bss": 1196,
+            ".text-delta": 3555,
             ".data-delta": 0,
-            ".bss-delta": 0
+            ".bss-delta": 72
         }
     },
     {
         "summary": {
-            "static_ram": 10153,
-            "static_ram_delta": 0,
-            "total_flash": 44315,
-            "total_flash_delta": 0
+            "static_ram": 10229,
+            "static_ram_delta": 76,
+            "total_flash": 58295,
+            "total_flash_delta": 13814
         }
     }
 ]

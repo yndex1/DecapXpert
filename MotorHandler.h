@@ -19,8 +19,10 @@ private:
     bool& bDecapState;
     bool& bSolenoidState; 
     bool& bDecapDoneState;
-    SpeedController speedController_MRoundabout();
-    SpeedController speedController_MBelt();
+    //SpeedController speedController_MRoundabout;
+    //SpeedController speedController_MBelt;
+    //MotorEnable
+
 
 };
 #endif

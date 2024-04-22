@@ -58,21 +58,24 @@ int main()
         {
             case START:{
                         
-                        //SensorHandler SensorHandler;
+                        SensorHandler SensorHandler;
                         //SensorHandler.SensorTest();
-                        //printf("Task START\r\n");
-                        //SensorHandler.SensorTasks();
-                        //MotorHandler MotorHandlerObjekt(class SensorHandler bDecapState, class SensorHandler bSolenoidState, class SensorHandler DecapDoneState);
-                        AnalogIn Eingang(PC_3);
-                        IRSensor Sensor(Eingang);
-                        float ir_distance_mV = 1.0e3f * Sensor.read() * 3.3f;
-                        printf("IR sensor (mV): %3.3f\r\n", ir_distance_mV);
+                        SensorHandler.SensorTasks();
+                        printf("Task START\r\n");
+                        MotorHandler MotorHandlerObjekt(SensorHandler.bDecapState, SensorHandler.bSolenoidState, SensorHandler.bDecapDoneState);
+                        //bool b1;
+                        //bool b2;
+                        //bool b3;
+                        //MotorHandler MotorHandlerObjekt(b1, b2,b3);
+                        MotorHandlerObjekt.MotorTasks();
+
+
 
                         
                         break;}
             case STOP:{
                  //MotorHandler ~MotorHandler();
-                 //printf("Task STOP\r\n");
+                 printf("Task STOP\r\n");
                  break;}
 
             default: {printf("Kein Case");}

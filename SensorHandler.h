@@ -18,6 +18,12 @@ public:
   bool bDecapDoneState;
   AnalogIn AI;
   IRSensor SensorDecap;
+  DigitalIn diTubeDetection;
+  AnalogIn aiCapAfterDecapping;
+  AnalogIn aiCapAfterSolenoid;
+  IRSensorDigital senTubeDetection;
+  IRSensor senCapAfterDecapping; 
+  IRSensor senCapAfterSolenoid;
  
 
   
