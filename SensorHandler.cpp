@@ -11,10 +11,14 @@ aiCapAfterDecapping(PC_2),
 aiCapAfterSolenoid(PC_3),
 senTubeDetection(diTubeDetection),
 senCapAfterDecapping(aiCapAfterDecapping),
-senCapAfterSolenoid(aiCapAfterSolenoid)
+senCapAfterSolenoid(aiCapAfterSolenoid),
+UPPER_THRESHOLD(1000.0f),
+LOWER_THRESHOLD(500.0f)
 {
 
 }
+
+
 
 
 void SensorHandler::SensorTasks() {
@@ -24,12 +28,18 @@ void SensorHandler::SensorTasks() {
     float fCapAfterDecapping = senCapAfterDecapping.read();
     float fCapAfterSolenoid = senCapAfterSolenoid.read();
 
-    if (bTubeDetection == true)
+    if (bTubeDetection == true) {
       bDecapState = true;
-    if (fCapAfterDecapping <= 0.5 && fCapAfterDecapping >= 0)
+      ThisThread::sleep_for(2000ms);
+      bDecapState = false;
+    }
+    if (fCapAfterDecapping <= UPPER_THRESHOLD && fCapAfterDecapping >= LOWER_THRESHOLD) {
       bSolenoidState = true;
-    if (fCapAfterSolenoid <= 0.5 && fCapAfterSolenoid >= 0)
+    }
+    if (fCapAfterSolenoid <= UPPER_THRESHOLD &&
+        fCapAfterSolenoid >= LOWER_THRESHOLD) {
       bDecapDoneState = true;
+    }
     //ThisThread::sleep_for(25ms);
   //}
 }

@@ -2,61 +2,69 @@
 
 
 MotorHandler::MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecapDoneState):
- bStateMotorRoundabout(true), 
- bStateMotorBelt(false), 
  bDecapState(bDecapState), 
  bSolenoidState(bSolenoidState), 
- bDecapDoneState(bDecapDoneState)
+ bDecapDoneState(bDecapDoneState),
+ SPEED_ROUNDABOUT(0.6f),
+ SPEED_BELT(0.6f),
+ SPEED_STOP(0.5f),
+ doEnable_motors(PB_15),
+ doSolenoid(PB_10), //eif eppis usgang
+ pwm_MotorRoundabout(PB_13),
+ pwm_MotorBelt(PA_9),
+ encoder_MotorRoundabout(PA_6, PC_7),
+ encoder_MotorBelt(PB_6, PB_7),
+ pwm_period_s(0.00005f),
+ max_voltage(12.0f),
+ counts_per_turn_MBelt(20.0f * 391.0f),
+ counts_per_turn_MRoundabout(20.0f * 195.0f),
+ kn_MRoundabout(195.0f / 12.0f),
+ kn_MBelt(391.0f / 12.0f),
+ k_gear_MRoundabout(195.0f / 100.0f),
+ k_gear_MBelt(391.0f / 100.0f),
+ kp(0.1f),
+ max_speed_rps(1.0f),
+ speedController_MRoundabout(counts_per_turn_MRoundabout * k_gear_MRoundabout, kn_MRoundabout / k_gear_MRoundabout, max_voltage, pwm_MotorRoundabout, encoder_MotorRoundabout),
+ speedController_MBelt(counts_per_turn_MBelt * k_gear_MBelt, kn_MBelt / k_gear_MBelt, max_voltage, pwm_MotorBelt, encoder_MotorBelt)
 {
-
-
 }
+
+MotorHandler::~MotorHandler()
+{
+    doEnable_motors = 0;
+}
+
 
 void MotorHandler::MotorTasks(){
 
-//MotorEnable
-DigitalOut enable_motors(PB_15);
-//Motor PWM definieren
-FastPWM pwm_MotorRoundabout(PB_13);
-FastPWM pwm_MotorBelt(PA_9);
-
-//Encoder definieren
-EncoderCounter encoder_MotorRoundabout(PA_6, PC_7);
-EncoderCounter encoder_MotorBelt(PB_6, PB_7); // create encoder objects to read in the encoder counter values
-
-//pwm Periode definieren
-float pwm_period_s = 0.00005f;    // define pwm period time in seconds and create FastPWM objects to command dc motors
-
-// create SpeedController and PositionController objects, default parametrization is for 100:1 gear box
-float max_voltage = 12.0f;                  // define maximum voltage of battery packs, adjust this to 6.0f V if you only use one batterypack
-float counts_per_turn_MRoundabout = 20.0f * 195.0f;  // define counts per turn at gearbox end: counts/turn * gearratio  -->> von 20 auf 10 geändert, jetzt stimmen 1
-float counts_per_turn_MBelt = 20.0f * 391.0f;     
-float kn_MRoundabout = 195.0f / 12.0f;               // define motor constant in rpm per V
-float kn_MBelt = 391.0f / 12.0f;                  
-float k_gear_MRoundabout = 195.0f / 100.0f;          // define additional ratio in case you are using a dc motor with a different gear box, e.g. 100:1
-float k_gear_MBelt = 391.0f / 100.0f;          
-float kp = 0.1f;                            // define custom kp, this is the default speed controller gain for gear box 78.125:1
-
-float max_speed_rps = 1.0f;                 // define maximum speed that the position controller is changig the speed, has to be smaller or equal to kn * max_voltage$
-SpeedController speedController_MRoundabout(counts_per_turn_MRoundabout * k_gear_MRoundabout, kn_MRoundabout / k_gear_MRoundabout, max_voltage, pwm_MotorRoundabout, encoder_MotorRoundabout);
-SpeedController speedController_MBelt(counts_per_turn_MBelt * k_gear_MBelt, kn_MBelt / k_gear_MBelt, max_voltage, pwm_MotorBelt, encoder_MotorBelt);
-
-
-//while(true){
-    bStateMotorBelt = bDecapState;
-
+    //doEnable_motors = 1;
+    //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
 
     if(bDecapState)
     {
-        enable_motors = 1;
-        speedController_MRoundabout.setDesiredSpeedRPS(0.6f);
+        //MUSS BELT SEIN ROUNDABOUT FÜR TEST
+        speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
+        //speedController_MBelt.setDesiredSpeedRPS(SPEED_BELT);
     }
-    if(bStateMotorBelt == 1){
-        //Motor Controller Solenoid startet
+    else
+    {
+        //MUSS BELT SEIN ROUNDABOUT FÜR TEST
+        speedController_MRoundabout.setDesiredSpeedRPS(SPEED_STOP);
+        //speedController_MBelt.setDesiredSpeedRPS(SPEED_STOP);
     }
-//}
+    if(bDecapDoneState){
+        speedController_MBelt.setDesiredSpeedRPS(SPEED_STOP);
+    }
+
+    if(bSolenoidState){
+        ThisThread::sleep_for(500ms);
+        doSolenoid = 1;
+        ThisThread::sleep_for(500ms);
+        doSolenoid = 0;
+    }
+
+
 
 printf("motortasks\r\n");
-
 
 }

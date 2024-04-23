@@ -34,7 +34,8 @@ private:
   bool bTubeDetection;
   float fCapAfterDecapping;
   float fCapAfterSolenoid;
-
+  const float UPPER_THRESHOLD;
+  const float LOWER_THRESHOLD;
 };
 
 #endif

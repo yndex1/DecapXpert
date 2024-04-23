@@ -57,24 +57,19 @@ int main()
         switch (iState)
         {
             case START:{
-                        
+ 
                         SensorHandler SensorHandler;
-                        //SensorHandler.SensorTest();
                         SensorHandler.SensorTasks();
                         printf("Task START\r\n");
                         MotorHandler MotorHandlerObjekt(SensorHandler.bDecapState, SensorHandler.bSolenoidState, SensorHandler.bDecapDoneState);
-                        //bool b1;
-                        //bool b2;
-                        //bool b3;
-                        //MotorHandler MotorHandlerObjekt(b1, b2,b3);
                         MotorHandlerObjekt.MotorTasks();
-
+                        //MotorHandlerObjekt.~MotorHandler();
 
 
                         
                         break;}
             case STOP:{
-                 //MotorHandler ~MotorHandler();
+
                  printf("Task STOP\r\n");
                  break;}
 
