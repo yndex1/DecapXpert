@@ -42,6 +42,7 @@ int main()
     // start timers
     main_task_timer.start();
 
+    SensorHandler SensorHandler;
     
     while (true) { // this loop will run forever
 
@@ -58,8 +59,7 @@ int main()
         {
             case START:{
  
-                        SensorHandler SensorHandler;
-                        SensorHandler.SensorTasks();
+                        
                         printf("Task START\r\n");
                         MotorHandler MotorHandlerObjekt(SensorHandler.bDecapState, SensorHandler.bSolenoidState, SensorHandler.bDecapDoneState);
                         MotorHandlerObjekt.MotorTasks();

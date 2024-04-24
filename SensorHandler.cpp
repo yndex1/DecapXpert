@@ -6,7 +6,7 @@ bSolenoidState(false),
 bDecapDoneState(false), 
 AI(PC_3), 
 SensorDecap(AI), 
-diTubeDetection(PB_2), 
+diTubeDetection(PB_2),  
 aiCapAfterDecapping(PC_2),
 aiCapAfterSolenoid(PC_3),
 senTubeDetection(diTubeDetection),
@@ -15,15 +15,40 @@ senCapAfterSolenoid(aiCapAfterSolenoid),
 UPPER_THRESHOLD(1000.0f),
 LOWER_THRESHOLD(500.0f)
 {
-
+    thread.start(callback(this, &SensorHandler::SensorTasks));
+    ticker.attach(callback(this, &SensorHandler::sendThreadFlag), PERIOD);
 }
 
+const float SensorHandler::PERIOD = 0.002f;                  // period of task, given in [s]
 
+/**
+ * Deletes the SensorHandler object.
+ */
+SensorHandler::~SensorHandler() {
+    
+    ticker.detach();
+}
 
+/**
+ * This method is called by the ticker timer interrupt service routine.
+ * It sends a flag to the thread to make it run again.
+ */
+void SensorHandler::sendThreadFlag() {
+    
+    thread.flags_set(threadFlag);
+}
 
 void SensorHandler::SensorTasks() {
 
-  //while (true) {
+
+
+  while (true) {
+
+    // wait for the periodic thread flag
+
+    ThisThread::flags_wait_any(threadFlag);
+    
+
     bool bTubeDetection = senTubeDetection.read();
     float fCapAfterDecapping = senCapAfterDecapping.read();
     float fCapAfterSolenoid = senCapAfterSolenoid.read();
@@ -41,7 +66,7 @@ void SensorHandler::SensorTasks() {
       bDecapDoneState = true;
     }
     //ThisThread::sleep_for(25ms);
-  //}
+  }
 }
 
 void SensorHandler::SensorTest()
