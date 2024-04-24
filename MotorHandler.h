@@ -11,7 +11,7 @@ class MotorHandler {
 public:
     virtual ~MotorHandler();
   MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecapDoneState);
-  void MotorInit();
+  void MotorStop();
   void MotorTasks();
   
  

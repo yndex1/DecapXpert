@@ -2,3 +2,10 @@
 .mbed
 projectfiles
 *.py*
+BUILD
+PM2_Libary
+mbed-os
+PM2_Libary/RangeFinder
+PM2_Libary/RangeFinder/Pulse
+PM2_Libary/LSM9DS1
+PM2_Libary/FastPWM

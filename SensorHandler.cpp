@@ -19,7 +19,7 @@ LOWER_THRESHOLD(500.0f)
     ticker.attach(callback(this, &SensorHandler::sendThreadFlag), PERIOD);
 }
 
-const float SensorHandler::PERIOD = 0.002f;                  // period of task, given in [s]
+const float SensorHandler::PERIOD = 1.0f;                  // period of task, given in [s]
 
 /**
  * Deletes the SensorHandler object.
@@ -53,11 +53,14 @@ void SensorHandler::SensorTasks() {
     float fCapAfterDecapping = senCapAfterDecapping.read();
     float fCapAfterSolenoid = senCapAfterSolenoid.read();
 
+    printf("Sensortasks\r\n");
+
     if (bTubeDetection == true) {
       bDecapState = true;
-      ThisThread::sleep_for(2000ms);
-      bDecapState = false;
+      printf("decapStateTrue\r\n");
+      //bDecapState = false;
     }
+
     if (fCapAfterDecapping <= UPPER_THRESHOLD && fCapAfterDecapping >= LOWER_THRESHOLD) {
       bSolenoidState = true;
     }

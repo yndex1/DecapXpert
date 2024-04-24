@@ -1,35 +1,14 @@
 #include "Servo.h"
 
-const float Servo::MIN_INPUT = 0.01f;
-const float Servo::MAX_INPUT = 0.99f;
-
-Servo::Servo(PinName Pin) : ServoPin(Pin)
-{
-    servoEnabled = false;
-    Position = 0;
-    Period = 0;
-}
+Servo::Servo(PinName Pin) : ServoPin(Pin) {}
 
 /**
- * Sets the pwm period.
- * @_Period period in mus.
+ * Sets the desired position.
+ * @Pos desired position in mus (position/period).
  */
-void Servo::SetPeriod(float _Period)
+void Servo::SetPosition(int Pos)
 {
-    Period = _Period;
-}
-
-/**
- * Sets the desired angle.
- * @_Input a value between 0...1.
- */
-void Servo::SetPosition(float _Input)
-{
-    if (servoEnabled) {
-        if (_Input < MIN_INPUT) _Input = MIN_INPUT;
-        if (_Input > MAX_INPUT) _Input = MAX_INPUT;
-        Position = static_cast<int>(_Input * static_cast<float>(Period));
-    }
+    Position = Pos;
 }
 
 void Servo::StartPulse()
@@ -44,26 +23,13 @@ void Servo::EndPulse()
 }
 
 /**
- * Enables the servo with start angle and period.
- * @_StartInput a value between 0...1.
- * @_Period period in mus.
+ * Enables the servo with start position and period.
+ * @StartPos start position in mus.
+ * @Period period in mus.
  */
-void Servo::Enable(float _StartInput, int _Period)
+void Servo::Enable(int StartPos, int Period)
 {
-    servoEnabled = true;
-    if (_StartInput < MIN_INPUT) _StartInput = MIN_INPUT;
-    if (_StartInput > MAX_INPUT) _StartInput = MAX_INPUT;
-    Period = _Period;
-    Position = static_cast<int>(_StartInput * static_cast<float>(Period));
-    Pulse.attach(callback(this, &Servo::StartPulse), std::chrono::microseconds{static_cast<long int>(Period)});
-}
-
-/**
- * Enables the servo with last set angle and period.
- */
-void Servo::Enable()
-{
-    servoEnabled = true;
+    Position = StartPos;
     Pulse.attach(callback(this, &Servo::StartPulse), std::chrono::microseconds{static_cast<long int>(Period)});
 }
 
@@ -72,15 +38,5 @@ void Servo::Enable()
  */
 void Servo::Disable()
 {
-    servoEnabled = false;
     Pulse.detach();
-}
-
-/**
- * Returns true if Servo is enabled.
- * @return isEnable.
- */
-bool Servo::isEnabled()
-{
-    return servoEnabled;
 }

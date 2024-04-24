@@ -7,7 +7,9 @@ FastPWM::FastPWM(PinName pin, int prescaler) : PwmOut(pin) {
     
     //Set duty cycle on 0%, period on 20ms
     period(0.02);
-    write(0.0);
+    write(0);
+    
+
 }
 
 FastPWM::~FastPWM( void ) {
@@ -66,10 +68,6 @@ void FastPWM::pulsewidth_us(double us) {
 void FastPWM::write(double duty) {
     _duty=duty;
     pulsewidth_ticks(duty*getPeriod());
-}
-
-void FastPWM::write(float duty) {
-    write(static_cast<double>(duty));
 }
 
 double FastPWM::read( void ) {

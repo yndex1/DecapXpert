@@ -105,7 +105,6 @@ public:
     * @param duty - A double value representing the output duty-cycle, specified as a percentage.  The value should lie between 0.0 (representing on 0%) and 1.0 (representing on 100%).
     */
     void write(double duty);
-    void write(float duty);
     
     /**
     * Return the ouput duty-cycle, specified as a percentage (double)

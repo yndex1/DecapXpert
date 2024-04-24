@@ -8,7 +8,7 @@ MotorHandler::MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecap
  bDecapDoneState(bDecapDoneState),
  SPEED_ROUNDABOUT(0.6f),
  SPEED_BELT(0.6f),
- SPEED_STOP(0.5f),
+ SPEED_STOP(0.0f),
  doEnable_motors(PB_15),
  doSolenoid(PB_10), //eif eppis usgang
  pwm_MotorRoundabout(PB_13),
@@ -35,11 +35,16 @@ MotorHandler::~MotorHandler()
 {
     doEnable_motors = 0;
 }
+void MotorHandler::MotorStop()
+{
+    doEnable_motors = 0;
+}
 
 
-void MotorHandler::MotorTasks(){
+void MotorHandler::MotorTasks()
+{
 
-    //doEnable_motors = 1;
+    doEnable_motors = 1;
     //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
 
     if(bDecapState)

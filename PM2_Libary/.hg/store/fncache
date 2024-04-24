@@ -17,3 +17,9 @@ data/LowpassFilter.cpp.i
 data/EncoderCounter.cpp.i
 data/ThreadFlag.h.i
 data/PM2_Libary.h.i
+data/SensorBar.h.i
+data/AvgFilter.cpp.i
+data/Motion.h.i
+data/Motion.cpp.i
+data/SensorBar.cpp.i
+data/AvgFilter.h.i

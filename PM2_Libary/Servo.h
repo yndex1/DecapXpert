@@ -23,31 +23,66 @@
 #ifndef MBED_SERVO_H
 #define MBED_SERVO_H
 
+/** Class to control a servo on any pin, without using pwm
+ *
+ * Example:
+ * @code
+ * // Keep sweeping servo from left to right
+ * #include "mbed.h"
+ * #include "Servo.h"
+ *
+ * Servo Servo1(p20);
+ *
+ * Servo1.Enable(1500,20000);
+ *
+ * while(1) {
+ *     for (int pos = 1000; pos < 2000; pos += 25) {
+ *         Servo1.SetPosition(pos);
+ *         wait_ms(20);
+ *     }
+ *     for (int pos = 2000; pos > 1000; pos -= 25) {
+ *         Servo1.SetPosition(pos);
+ *         wait_ms(20);
+ *     }
+ * }
+ * @endcode
+ */
+
 #include "mbed.h"
 
 class Servo
 {
 
 public:
-
+    /** Create a new Servo object on any mbed pin
+     *
+     * @param Pin Pin on mbed to connect servo to
+     */
     Servo(PinName Pin);
-    void SetPeriod(float _Period);
-    void SetPosition(float _Input);
-    void Enable(float _StartInput, int _Period);
-    void Enable();
+
+    /** Change the position of the servo. Position in us
+     *
+     * @param NewPos The new value of the servos position (us)
+     */
+    void SetPosition(int NewPos);
+
+    /** Enable the servo. Without enabling the servo won't be running. Startposition and period both in us.
+     *
+     * @param StartPos The position of the servo to start (us)
+     * @param Period The time between every pulse. 20000 us = 50 Hz(standard) (us)
+     */
+    void Enable(int StartPos, int Period);
+
+    /** Disable the servo. After disabling the servo won't get any signal anymore
+     *
+     */
     void Disable();
-    bool isEnabled();
 
 private:
-
-    static const float MIN_INPUT;
-    static const float MAX_INPUT;
-
     void StartPulse();
     void EndPulse();
 
-    bool servoEnabled;
-    int Position, Period;
+    int Position;
     DigitalOut ServoPin;
     Ticker Pulse;
     Timeout PulseStop;

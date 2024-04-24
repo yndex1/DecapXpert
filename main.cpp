@@ -15,7 +15,7 @@ void user_button_pressed_fcn();     // custom functions which gets executed when
 void user_button_released_fcn();
 
 // while loop gets executed every main_task_period_ms milliseconds
-int main_task_period_ms = 50;   // define main task period time in ms e.g. 50 ms -> main task runns 20 times per second
+int main_task_period_ms = 500;   // define main task period time in ms e.g. 50 ms -> main task runns 20 times per second
 Timer main_task_timer;          // create Timer object which we use to run the main task every main task period time in ms
 
 // led on nucleo board
@@ -43,7 +43,7 @@ int main()
     main_task_timer.start();
 
     SensorHandler SensorHandler;
-    
+    MotorHandler MotorHandlerObjekt(SensorHandler.bDecapState, SensorHandler.bSolenoidState, SensorHandler.bDecapDoneState);
     while (true) { // this loop will run forever
 
         main_task_timer.reset();
@@ -55,25 +55,21 @@ int main()
             iState = STOP;
         }
 
-        switch (iState)
-        {
-            case START:{
- 
-                        
-                        printf("Task START\r\n");
-                        MotorHandler MotorHandlerObjekt(SensorHandler.bDecapState, SensorHandler.bSolenoidState, SensorHandler.bDecapDoneState);
-                        MotorHandlerObjekt.MotorTasks();
-                        //MotorHandlerObjekt.~MotorHandler();
+        switch (iState) {
+            case START: {
+            printf("Task START\r\n");
+            MotorHandlerObjekt.MotorTasks();
+            break;
+            }
+            case STOP: {
+            MotorHandlerObjekt.MotorStop();
+            printf("Task STOP\r\n");
+            break;
+            }
 
-
-                        
-                        break;}
-            case STOP:{
-
-                 printf("Task STOP\r\n");
-                 break;}
-
-            default: {printf("Kein Case");}
+            default: {
+            printf("Kein Case");
+            }
         }
         user_led = !user_led;
 

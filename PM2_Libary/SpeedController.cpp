@@ -2,8 +2,8 @@
 
 const float SpeedController::TS = 0.001f;                       // period of 1 ms
 const float SpeedController::LOWPASS_FILTER_FREQUENCY = 100.0f; // given in [rad/s]
-const float SpeedController::MIN_DUTY_CYCLE = 0.01f;            // minimum duty-cycle
-const float SpeedController::MAX_DUTY_CYCLE = 0.99f;            // maximum duty-cycle
+const float SpeedController::MIN_DUTY_CYCLE = 0.02f;            // minimum duty-cycle
+const float SpeedController::MAX_DUTY_CYCLE = 0.98f;            // maximum duty-cycle
 
 SpeedController::SpeedController(float counts_per_turn, float kn, float max_voltage, FastPWM& pwm, EncoderCounter& encoderCounter) : pwm(pwm), encoderCounter(encoderCounter), thread(osPriorityHigh, 4096)
 {
