@@ -8,7 +8,7 @@ AI(PC_3),
 SensorDecap(AI), 
 diTubeDetection(PB_2),  
 aiCapAfterDecapping(PC_2),
-aiCapAfterSolenoid(PC_3),
+aiCapAfterSolenoid(PC_5),
 senTubeDetection(diTubeDetection),
 senCapAfterDecapping(aiCapAfterDecapping),
 senCapAfterSolenoid(aiCapAfterSolenoid),
@@ -60,12 +60,12 @@ void SensorHandler::SensorTasks() {
       printf("decapStateTrue\r\n");
       //bDecapState = false;
     }
+    else bDecapState = false;
 
     if (fCapAfterDecapping <= UPPER_THRESHOLD && fCapAfterDecapping >= LOWER_THRESHOLD) {
       bSolenoidState = true;
     }
-    if (fCapAfterSolenoid <= UPPER_THRESHOLD &&
-        fCapAfterSolenoid >= LOWER_THRESHOLD) {
+    if (fCapAfterSolenoid <= UPPER_THRESHOLD && fCapAfterSolenoid >= LOWER_THRESHOLD) {
       bDecapDoneState = true;
     }
     //ThisThread::sleep_for(25ms);
@@ -74,9 +74,11 @@ void SensorHandler::SensorTasks() {
 
 void SensorHandler::SensorTest()
 {
+    AnalogIn AI1(PC_2);
+    AnalogIn AI2(PC_5);
 
-    float Wert = 1.0e3f * 3.3f * SensorDecap.read();
-    printf("test: %f", Wert);
+
+    printf("PC2: %f  PC5: %f\r\n", 1000.0f*3.3f*AI1.read(),1000.0f*3.3f*AI2.read());
 
 
 }

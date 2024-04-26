@@ -25,12 +25,13 @@ DigitalOut user_led(LED1);      // create DigitalOut object to command user led
 DigitalOut extra_led(PB_9);     // create DigitalOut object to command extra led (do add an aditional resistor, e.g. 220...500 Ohm)
 
 // mechanical button
-DigitalIn mechanical_button(PC_5);  // create DigitalIn object to evaluate extra mechanical button, you need to specify the mode for proper usage, see below
+//DigitalIn mechanical_button(PC_5);  // create DigitalIn object to evaluate extra mechanical button, you need to specify the mode for proper usage, see below
 
 //1 - Start
 int iState;
 const int START = 1;
 const int STOP = 10;
+const int TEST = 5;
 
 
 int main()
@@ -42,8 +43,9 @@ int main()
     // start timers
     main_task_timer.start();
 
-    SensorHandler SensorHandler;
-    MotorHandler MotorHandlerObjekt(SensorHandler.bDecapState, SensorHandler.bSolenoidState, SensorHandler.bDecapDoneState);
+    DigitalOut SolenoidTest(PB_12);
+    //SensorHandler SensorHandler;
+    //MotorHandler MotorHandlerObjekt(SensorHandler.bDecapState, SensorHandler.bSolenoidState, SensorHandler.bDecapDoneState);
     while (true) { // this loop will run forever
 
         main_task_timer.reset();
@@ -55,18 +57,30 @@ int main()
             iState = STOP;
         }
 
+        iState = TEST;
         switch (iState) {
             case START: {
             printf("Task START\r\n");
-            MotorHandlerObjekt.MotorTasks();
+            //MotorHandlerObjekt.MotorTasks();
             break;
             }
             case STOP: {
-            MotorHandlerObjekt.MotorStop();
+            //MotorHandlerObjekt.MotorStop();
             printf("Task STOP\r\n");
             break;
             }
 
+            case TEST:{
+              //AnalogIn AI1(PC_2); 1000.0f * 3.3f * AI1.read()
+                
+                
+                SolenoidTest = 1;
+                ThisThread::sleep_for(1s);
+                SolenoidTest = 0;
+
+              break;
+
+            }
             default: {
             printf("Kein Case");
             }
