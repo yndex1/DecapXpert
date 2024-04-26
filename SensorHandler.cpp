@@ -65,6 +65,7 @@ void SensorHandler::SensorTasks() {
     if (fCapAfterDecapping <= UPPER_THRESHOLD && fCapAfterDecapping >= LOWER_THRESHOLD) {
       bSolenoidState = true;
     }
+    
     if (fCapAfterSolenoid <= UPPER_THRESHOLD && fCapAfterSolenoid >= LOWER_THRESHOLD) {
       bDecapDoneState = true;
     }
@@ -74,11 +75,11 @@ void SensorHandler::SensorTasks() {
 
 void SensorHandler::SensorTest()
 {
-    AnalogIn AI1(PC_2);
-    AnalogIn AI2(PC_5);
+    //AnalogIn AI1(PC_2);
+    //AnalogIn AI2(PC_5);
 
 
-    printf("PC2: %f  PC5: %f\r\n", 1000.0f*3.3f*AI1.read(),1000.0f*3.3f*AI2.read());
+    //printf("PC2: %f  PC5: %f\r\n", 1000.0f*3.3f*AI1.read(),1000.0f*3.3f*AI2.read());
 
 
 }

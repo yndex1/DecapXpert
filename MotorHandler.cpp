@@ -1,12 +1,10 @@
 #include <MotorHandler.h>
 
-
-
 MotorHandler::MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecapDoneState):
  bDecapState(bDecapState), 
  bSolenoidState(bSolenoidState), 
  bDecapDoneState(bDecapDoneState),
- SPEED_ROUNDABOUT(0.6f),
+ SPEED_ROUNDABOUT(-0.8f),
  SPEED_BELT(0.6f),
  SPEED_STOP(0.0f),
  doEnable_motors(PB_15),
@@ -28,8 +26,12 @@ MotorHandler::MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecap
  speedController_MRoundabout(counts_per_turn_MRoundabout * k_gear_MRoundabout, kn_MRoundabout / k_gear_MRoundabout, max_voltage, pwm_MotorRoundabout, encoder_MotorRoundabout),
  speedController_MBelt(counts_per_turn_MBelt * k_gear_MBelt, kn_MBelt / k_gear_MBelt, max_voltage, pwm_MotorBelt, encoder_MotorBelt)
 {
-    
+
 }
+
+DigitalOut solenoid(PC_6);
+Solenoid Solenoid(solenoid);
+
 
 MotorHandler::~MotorHandler()
 {
@@ -64,10 +66,8 @@ void MotorHandler::MotorTasks()
     }
 
     if(bSolenoidState){
-        ThisThread::sleep_for(500ms);
-        doSolenoid = 1;
-        ThisThread::sleep_for(500ms);
-        doSolenoid = 0;
+        //must be implemented
+        Solenoid.set();
     }
 
 

@@ -3,6 +3,8 @@
 #include <string>
 #include <MotorHandler.h>
 #include <SensorHandler.h>
+#include <Solenoid.h>
+
 
 
 // logical variable main task
@@ -15,7 +17,7 @@ void user_button_pressed_fcn();     // custom functions which gets executed when
 void user_button_released_fcn();
 
 // while loop gets executed every main_task_period_ms milliseconds
-int main_task_period_ms = 500;   // define main task period time in ms e.g. 50 ms -> main task runns 20 times per second
+int main_task_period_ms = 2500;   // define main task period time in ms e.g. 50 ms -> main task runns 20 times per second
 Timer main_task_timer;          // create Timer object which we use to run the main task every main task period time in ms
 
 // led on nucleo board
@@ -24,8 +26,6 @@ DigitalOut user_led(LED1);      // create DigitalOut object to command user led
 // additional Led
 DigitalOut extra_led(PB_9);     // create DigitalOut object to command extra led (do add an aditional resistor, e.g. 220...500 Ohm)
 
-// mechanical button
-//DigitalIn mechanical_button(PC_5);  // create DigitalIn object to evaluate extra mechanical button, you need to specify the mode for proper usage, see below
 
 //1 - Start
 int iState;
@@ -43,7 +43,7 @@ int main()
     // start timers
     main_task_timer.start();
 
-    DigitalOut SolenoidTest(PB_12);
+    //Sensorhandler and Motorhandler start
     //SensorHandler SensorHandler;
     //MotorHandler MotorHandlerObjekt(SensorHandler.bDecapState, SensorHandler.bSolenoidState, SensorHandler.bDecapDoneState);
     while (true) { // this loop will run forever
@@ -72,11 +72,14 @@ int main()
 
             case TEST:{
               //AnalogIn AI1(PC_2); 1000.0f * 3.3f * AI1.read()
-                
-                
-                SolenoidTest = 1;
-                ThisThread::sleep_for(1s);
-                SolenoidTest = 0;
+
+              DigitalOut solenoid(PC_6);
+              Solenoid Solenoid(solenoid);
+
+              Solenoid.set();
+              ThisThread::sleep_for(1s);
+              Solenoid.reset();
+              ThisThread::sleep_for(1s);
 
               break;
 

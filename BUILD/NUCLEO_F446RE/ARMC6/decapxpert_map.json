@@ -2,9 +2,9 @@
     {
         "module": "MotorHandler.o",
         "size": {
-            ".text": 70,
+            ".text": 128,
             ".data": 0,
-            ".bss": 0,
+            ".bss": 36,
             ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
@@ -25,6 +25,17 @@
         "module": "SensorHandler.o",
         "size": {
             ".text": 16,
+            ".data": 0,
+            ".bss": 0,
+            ".text-delta": 0,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
+        "module": "Solenoid.o",
+        "size": {
+            ".text": 124,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -90,10 +101,10 @@
     {
         "module": "main.o",
         "size": {
-            ".text": 578,
+            ".text": 576,
             ".data": 4,
             ".bss": 189,
-            ".text-delta": -2,
+            ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -177,10 +188,10 @@
     },
     {
         "summary": {
-            "static_ram": 10085,
+            "static_ram": 10121,
             "static_ram_delta": 0,
-            "total_flash": 41225,
-            "total_flash_delta": -2
+            "total_flash": 41405,
+            "total_flash_delta": 0
         }
     }
 ]

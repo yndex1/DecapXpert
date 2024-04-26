@@ -318,4 +318,4 @@ BUILD\NUCLEO_F446RE\ARMC6\MotorHandler.o: MotorHandler.cpp \
   PM2_Libary\SpeedController.h PM2_Libary\EncoderCounter.h \
   PM2_Libary\LowpassFilter.h PM2_Libary\ThreadFlag.h \
   PM2_Libary\FastPWM\FastPWM.h SensorHandler.h IRSensor.h \
-  IRSensorDigital.h PM2_Libary\ThreadFlag.h
+  IRSensorDigital.h PM2_Libary\ThreadFlag.h Solenoid.h

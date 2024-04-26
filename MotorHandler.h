@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <SpeedController.h>
 #include <SensorHandler.h>
+#include <Solenoid.h>
 
 class MotorHandler {
 
