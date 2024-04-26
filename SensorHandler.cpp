@@ -1,4 +1,5 @@
 #include <SensorHandler.h>
+#include <EncoderCounter.h>
 
 SensorHandler::SensorHandler(): 
 bDecapState(false), 
@@ -81,4 +82,20 @@ void SensorHandler::SensorTest()
     printf("PC2: %f  PC5: %f\r\n", 1000.0f*3.3f*AI1.read(),1000.0f*3.3f*AI2.read());
 
 
+}
+
+int lastCounter, counter;
+
+bool SensorHandler::Encoder() {
+  
+  EncoderCounter EncoderRoundabout(PA_6, PB_6);
+
+  counter = EncoderRoundabout.read();
+
+  if (lastCounter != counter) {
+    lastCounter = counter;
+    return true;
+  } else {
+    return false;
+  }
 }
