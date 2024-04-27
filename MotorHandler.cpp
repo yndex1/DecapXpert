@@ -4,7 +4,7 @@ MotorHandler::MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecap
  bDecapState(bDecapState), 
  bSolenoidState(bSolenoidState), 
  bDecapDoneState(bDecapDoneState),
- SPEED_ROUNDABOUT(-0.8f),
+ SPEED_ROUNDABOUT(0.5f),
  SPEED_BELT(0.6f),
  SPEED_STOP(0.0f),
  doEnable_motors(PB_15),
@@ -26,28 +26,49 @@ MotorHandler::MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecap
  speedController_MRoundabout(counts_per_turn_MRoundabout * k_gear_MRoundabout, kn_MRoundabout / k_gear_MRoundabout, max_voltage, pwm_MotorRoundabout, encoder_MotorRoundabout),
  speedController_MBelt(counts_per_turn_MBelt * k_gear_MBelt, kn_MBelt / k_gear_MBelt, max_voltage, pwm_MotorBelt, encoder_MotorBelt)
 {
-
+    thread.start(callback(this, &MotorHandler::MotorTasks));
+    ticker.attach(callback(this, &MotorHandler::sendThreadFlag), PERIOD);
 }
 
 DigitalOut solenoid(PC_6);
 Solenoid Solenoid(solenoid);
 
+const float MotorHandler::PERIOD = 0.2f;                  // period of task, given in [s]
+
 
 MotorHandler::~MotorHandler()
 {
     doEnable_motors = 0;
+    ticker.detach();
 }
 void MotorHandler::MotorStop()
 {
     doEnable_motors = 0;
 }
-
+void MotorHandler::MotorEnable()
+{
+    doEnable_motors = 1;
+}
+/**
+ * This method is called by the ticker timer interrupt service routine.
+ * It sends a flag to the thread to make it run again.
+ */
+void MotorHandler::sendThreadFlag() {
+    
+    thread.flags_set(threadFlag);
+}
 
 void MotorHandler::MotorTasks()
 {
 
     doEnable_motors = 1;
     //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
+
+  while (true) {
+
+    // wait for the periodic thread flag
+    ThisThread::flags_wait_any(threadFlag);
+
 
     if(bDecapState)
     {
@@ -70,8 +91,6 @@ void MotorHandler::MotorTasks()
         Solenoid.set();
     }
 
-
-
 printf("motortasks\r\n");
-
+  }
 }

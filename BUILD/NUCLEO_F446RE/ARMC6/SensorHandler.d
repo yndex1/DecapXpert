@@ -315,4 +315,4 @@ BUILD\NUCLEO_F446RE\ARMC6\SensorHandler.o: SensorHandler.cpp \
   mbed-os\platform\include\platform\mbed_stats.h \
   mbed-os\platform\include\platform\Stream.h \
   mbed-os\platform\include\platform\FileLike.h IRSensorDigital.h \
-  PM2_Libary\ThreadFlag.h
+  PM2_Libary\ThreadFlag.h PM2_Libary\EncoderCounter.h

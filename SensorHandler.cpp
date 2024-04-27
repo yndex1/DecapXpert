@@ -20,7 +20,7 @@ LOWER_THRESHOLD(500.0f)
     ticker.attach(callback(this, &SensorHandler::sendThreadFlag), PERIOD);
 }
 
-const float SensorHandler::PERIOD = 1.0f;                  // period of task, given in [s]
+const float SensorHandler::PERIOD = 0.2f;                  // period of task, given in [s]
 
 /**
  * Deletes the SensorHandler object.

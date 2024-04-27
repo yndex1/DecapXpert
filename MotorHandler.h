@@ -6,6 +6,7 @@
 #include <SpeedController.h>
 #include <SensorHandler.h>
 #include <Solenoid.h>
+#include "ThreadFlag.h"
 
 class MotorHandler {
 
@@ -13,7 +14,9 @@ public:
     virtual ~MotorHandler();
   MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecapDoneState);
   void MotorStop();
+  void MotorEnable();
   void MotorTasks();
+
   
  
 
@@ -55,6 +58,14 @@ float max_speed_rps;                 // define maximum speed that the position c
 
 SpeedController speedController_MRoundabout;
 SpeedController speedController_MBelt;
+
+//Thread variables
+static const float PERIOD; // period of task, given in [s]
+ThreadFlag threadFlag;
+Thread thread;
+Ticker ticker;
+void sendThreadFlag();
+void run();
 
 };
 #endif
