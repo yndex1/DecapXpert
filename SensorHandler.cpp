@@ -21,6 +21,18 @@ LOWER_THRESHOLD(500.0f)
 }
 
 const float SensorHandler::PERIOD = 0.2f;                  // period of task, given in [s]
+// Sensor Pin
+DigitalIn sensorPin(PA_0); // Beispiel-Pin, an dem der Sensor angeschlossen ist
+
+// Anzahl der Löcher auf der Scheibe
+const int holeCount = 90;
+
+// Zähler für die Umdrehungen
+volatile int rotationCount = 0;
+volatile int erwartetCount = 10;
+
+// Vorheriger Zustand des Sensors
+bool previousState = false;
 
 /**
  * Deletes the SensorHandler object.
@@ -56,12 +68,12 @@ void SensorHandler::SensorTasks() {
 
     printf("Sensortasks\r\n");
 
-    if (bTubeDetection == true) {
+    //if (bTubeDetection == true) {
       bDecapState = true;
-      printf("decapStateTrue\r\n");
+    //  printf("decapStateTrue\r\n");
       //bDecapState = false;
-    }
-    else bDecapState = false;
+    //}
+    //else bDecapState = false;
 
     if (fCapAfterDecapping <= UPPER_THRESHOLD && fCapAfterDecapping >= LOWER_THRESHOLD) {
       bSolenoidState = true;
@@ -70,7 +82,7 @@ void SensorHandler::SensorTasks() {
     if (fCapAfterSolenoid <= UPPER_THRESHOLD && fCapAfterSolenoid >= LOWER_THRESHOLD) {
       bDecapDoneState = true;
     }
-    //ThisThread::sleep_for(25ms);
+    SensorStateChanged();
   }
 }
 
@@ -85,18 +97,37 @@ void SensorHandler::SensorTest()
 
 }
 
-int lastCounter, counter;
 
-bool SensorHandler::Encoder() {
-  
-  EncoderCounter EncoderRoundabout(PA_6, PB_6);
+bool SensorHandler::EncoderUeberpruefen() {
 
-  counter = EncoderRoundabout.read();
-
-  if (lastCounter != counter) {
-    lastCounter = counter;
-    return true;
+  if (rotationCount == erwartetCount || rotationCount == (erwartetCount + 1) || rotationCount == (erwartetCount - 1)) {
+    rotationCount = 0;
   } else {
     return false;
   }
+
+    return true;
+}
+
+
+
+
+// Funktion, die jedes Mal aufgerufen wird, wenn sich der Zustand des Sensors ändert
+void SensorHandler::SensorStateChanged() {
+    bool currentState = sensorPin.read();
+    
+    // Überprüfen Sie, ob sich der Zustand des Sensors geändert hat
+    if (currentState != previousState) {
+        previousState = currentState;
+        
+        // Wenn ein Loch erkannt wird, erhöhen Sie die Umdrehungszahl
+        if (currentState == true) {
+            rotationCount++;
+        }
+    }
+}
+
+void SensorHandler::EncoderCounterReset()
+{
+    erwartetCount = 0;
 }

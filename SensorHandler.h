@@ -14,7 +14,9 @@ public:
   virtual ~SensorHandler(); //Destructor
   void SensorTasks();
   void SensorTest();
-  bool Encoder();
+  bool EncoderUeberpruefen();
+  void SensorStateChanged();
+  void EncoderCounterReset();
   bool bDecapState;
   bool bSolenoidState;
   bool bDecapDoneState;

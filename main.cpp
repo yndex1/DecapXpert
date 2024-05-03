@@ -46,6 +46,8 @@ int main()
     //Sensorhandler and Motorhandler start
     SensorHandler SensorHandlerObjekt;
     MotorHandler MotorHandlerObjekt(SensorHandlerObjekt.bDecapState, SensorHandlerObjekt.bSolenoidState, SensorHandlerObjekt.bDecapDoneState);
+
+    bool encoderOK = true;
     
     while (true) { // this loop will run forever
 
@@ -64,10 +66,15 @@ int main()
             case START: {
             printf("Task START\r\n");
             MotorHandlerObjekt.MotorEnable();
+            encoderOK = SensorHandlerObjekt.EncoderUeberpruefen();
+            if(encoderOK != true){
+                iState = STOP;
+            }
             //MotorHandlerObjekt.MotorTasks();
             break;
             }
             case STOP: {
+            SensorHandlerObjekt.EncoderCounterReset();
             MotorHandlerObjekt.MotorStop();
             printf("Task STOP\r\n");
             break;

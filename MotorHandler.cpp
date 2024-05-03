@@ -61,8 +61,7 @@ void MotorHandler::sendThreadFlag() {
 void MotorHandler::MotorTasks()
 {
 
-    doEnable_motors = 1;
-    //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
+    speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
 
   while (true) {
 
@@ -73,18 +72,18 @@ void MotorHandler::MotorTasks()
     if(bDecapState)
     {
         //MUSS BELT SEIN ROUNDABOUT FÜR TEST
-        speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
-        //speedController_MBelt.setDesiredSpeedRPS(SPEED_BELT);
+        //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
+        speedController_MBelt.setDesiredSpeedRPS(SPEED_BELT);
     }
     else
     {
         //MUSS BELT SEIN ROUNDABOUT FÜR TEST
-        speedController_MRoundabout.setDesiredSpeedRPS(SPEED_STOP);
-        //speedController_MBelt.setDesiredSpeedRPS(SPEED_STOP);
-    }
-    if(bDecapDoneState){
+        //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_STOP);
         speedController_MBelt.setDesiredSpeedRPS(SPEED_STOP);
     }
+    //if(bDecapDoneState){
+    //    speedController_MBelt.setDesiredSpeedRPS(SPEED_STOP);
+    //}
 
     if(bSolenoidState){
         //must be implemented
