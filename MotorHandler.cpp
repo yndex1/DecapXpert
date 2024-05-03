@@ -60,8 +60,13 @@ void MotorHandler::sendThreadFlag() {
 
 void MotorHandler::MotorTasks()
 {
+<<<<<<< HEAD
 
     speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
+=======
+    
+    //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
+>>>>>>> b0e9bde83c284f92784d6fb1e4c623ff59ae7bc6
 
   while (true) {
 
@@ -86,10 +91,12 @@ void MotorHandler::MotorTasks()
     //}
 
     if(bSolenoidState){
-        //must be implemented
+        
         Solenoid.set();
+        ThisThread::sleep_for(500ms);
+        Solenoid.reset();
     }
 
-printf("motortasks\r\n");
+//printf("motortasks\r\n");
   }
 }
