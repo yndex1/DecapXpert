@@ -60,8 +60,7 @@ void MotorHandler::sendThreadFlag() {
 
 void MotorHandler::MotorTasks()
 {
-
-    doEnable_motors = 1;
+    
     //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
 
   while (true) {
@@ -87,10 +86,12 @@ void MotorHandler::MotorTasks()
     }
 
     if(bSolenoidState){
-        //must be implemented
+        
         Solenoid.set();
+        ThisThread::sleep_for(500ms);
+        Solenoid.reset();
     }
 
-printf("motortasks\r\n");
+//printf("motortasks\r\n");
   }
 }
