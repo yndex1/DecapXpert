@@ -24,10 +24,10 @@
     {
         "module": "MotorHandler.o",
         "size": {
-            ".text": 1138,
+            ".text": 1136,
             ".data": 0,
             ".bss": 36,
-            ".text-delta": -8,
+            ".text-delta": 12,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -88,9 +88,9 @@
         }
     },
     {
-        "module": "SensorHandler.o",
+        "module": "RoundaboutHandler.o",
         "size": {
-            ".text": 976,
+            ".text": 534,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -99,9 +99,20 @@
         }
     },
     {
+        "module": "SensorHandler.o",
+        "size": {
+            ".text": 1022,
+            ".data": 0,
+            ".bss": 29,
+            ".text-delta": 0,
+            ".data-delta": 0,
+            ".bss-delta": 0
+        }
+    },
+    {
         "module": "Solenoid.o",
         "size": {
-            ".text": 98,
+            ".text": 124,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -112,7 +123,7 @@
     {
         "module": "[lib]\\c_w.l",
         "size": {
-            ".text": 11323,
+            ".text": 11347,
             ".data": 16,
             ".bss": 348,
             ".text-delta": 0,
@@ -178,10 +189,10 @@
     {
         "module": "main.o",
         "size": {
-            ".text": 600,
+            ".text": 628,
             ".data": 4,
             ".bss": 189,
-            ".text-delta": 0,
+            ".text-delta": 8,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -265,10 +276,10 @@
     },
     {
         "summary": {
-            "static_ram": 10237,
+            "static_ram": 10266,
             "static_ram_delta": 0,
-            "total_flash": 59529,
-            "total_flash_delta": -8
+            "total_flash": 60185,
+            "total_flash_delta": 20
         }
     }
 ]

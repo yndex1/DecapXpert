@@ -5,14 +5,14 @@ MotorHandler::MotorHandler(bool &bDecapState, bool &bSolenoidState, bool &bDecap
  bSolenoidState(bSolenoidState), 
  bDecapDoneState(bDecapDoneState),
  SPEED_ROUNDABOUT(0.5f),
- SPEED_BELT(0.6f),
+ SPEED_BELT(-1.0f),
  SPEED_STOP(0.0f),
  doEnable_motors(PB_15),
  doSolenoid(PB_10), //eif eppis usgang
- pwm_MotorRoundabout(PB_13),
- pwm_MotorBelt(PA_9),
- encoder_MotorRoundabout(PA_6, PC_7),
- encoder_MotorBelt(PB_6, PB_7),
+ pwm_MotorRoundabout(PB_9),
+ pwm_MotorBelt(PB_13),
+ encoder_MotorRoundabout(PB_6, PB_7),
+ encoder_MotorBelt(PA_6, PC_7),
  pwm_period_s(0.00005f),
  max_voltage(12.0f),
  counts_per_turn_MBelt(20.0f * 391.0f),
@@ -60,19 +60,16 @@ void MotorHandler::sendThreadFlag() {
 
 void MotorHandler::MotorTasks()
 {
-<<<<<<< HEAD
 
-    speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
-=======
-    
+
     //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
->>>>>>> b0e9bde83c284f92784d6fb1e4c623ff59ae7bc6
+    
 
   while (true) {
 
     // wait for the periodic thread flag
     ThisThread::flags_wait_any(threadFlag);
-
+    speedController_MBelt.setDesiredSpeedRPS(SPEED_BELT);
 
     if(bDecapState)
     {

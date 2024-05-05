@@ -3,7 +3,9 @@
 #include <string>
 #include <MotorHandler.h>
 #include <SensorHandler.h>
+#include <RoundaboutHandler.h>
 #include <Solenoid.h>
+#include <PwmOut.h>
 
 
 
@@ -46,9 +48,9 @@ int main()
     //Sensorhandler and Motorhandler start
     SensorHandler SensorHandlerObjekt;
     MotorHandler MotorHandlerObjekt(SensorHandlerObjekt.bDecapState, SensorHandlerObjekt.bSolenoidState, SensorHandlerObjekt.bDecapDoneState);
+    Roundabouthandler RoundabouthandlerObjekt(SensorHandlerObjekt);
 
-    bool encoderOK = true;
-    
+
     while (true) { // this loop will run forever
 
         main_task_timer.reset();
@@ -66,30 +68,26 @@ int main()
             case START: {
             printf("Task START\r\n");
             MotorHandlerObjekt.MotorEnable();
-            encoderOK = SensorHandlerObjekt.EncoderUeberpruefen();
-            if(encoderOK != true){
-                iState = STOP;
-            }
-            //MotorHandlerObjekt.MotorTasks();
+            //encoderOK = SensorHandlerObjekt.EncoderUeberpruefen();
+
+    
+            MotorHandlerObjekt.MotorTasks();
             break;
             }
             case STOP: {
             SensorHandlerObjekt.EncoderCounterReset();
             MotorHandlerObjekt.MotorStop();
+            RoundabouthandlerObjekt.stopMotor();
             printf("Task STOP\r\n");
             break;
             }
 
             case TEST:{
               //AnalogIn AI1(PC_2); 1000.0f * 3.3f * AI1.read()
-
-              DigitalOut solenoid(PC_6);
-              Solenoid Solenoid(solenoid);
-
-              Solenoid.set();
-              ThisThread::sleep_for(1s);
-              Solenoid.reset();
-              ThisThread::sleep_for(1s);
+            //test.set();
+            //DigitalIn Pin(PC_8);
+            //printf("Eingang: %i\n", Pin.read());
+            
 
               break;
 

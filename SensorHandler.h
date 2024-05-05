@@ -28,6 +28,7 @@ public:
   IRSensorDigital senTubeDetection;
   IRSensor senCapAfterDecapping;
   IRSensor senCapAfterSolenoid;
+  volatile int iEncoderCounter;
 
 
 

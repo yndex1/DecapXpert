@@ -18,17 +18,18 @@ LOWER_THRESHOLD(500.0f)
 {
     thread.start(callback(this, &SensorHandler::SensorTasks));
     ticker.attach(callback(this, &SensorHandler::sendThreadFlag), PERIOD);
+    volatile int iEncoderCounter= 0;
 }
 
 const float SensorHandler::PERIOD = 0.2f;                  // period of task, given in [s]
 // Sensor Pin
-DigitalIn sensorPin(PA_0); // Beispiel-Pin, an dem der Sensor angeschlossen ist
+DigitalIn sensorPin(PC_8); // Beispiel-Pin, an dem der Sensor angeschlossen ist
 
 // Anzahl der Löcher auf der Scheibe
 const int holeCount = 90;
 
 // Zähler für die Umdrehungen
-volatile int rotationCount = 0;
+
 volatile int erwartetCount = 10;
 
 // Vorheriger Zustand des Sensors
@@ -66,13 +67,14 @@ void SensorHandler::SensorTasks() {
     float fCapAfterDecapping = senCapAfterDecapping.read();
     float fCapAfterSolenoid = senCapAfterSolenoid.read();
 
-    printf("Sensortasks\r\n");
-
-    //if (bTubeDetection == true) {
-      bDecapState = true;
+    //printf("Sensortasks\r\n");
+    bDecapState = true;
+    SensorStateChanged();
+    if (bTubeDetection == true) {
+        //SensorStateChanged();
     //  printf("decapStateTrue\r\n");
       //bDecapState = false;
-    //}
+    }
     //else bDecapState = false;
 
     if (fCapAfterDecapping <= UPPER_THRESHOLD && fCapAfterDecapping >= LOWER_THRESHOLD) {
@@ -82,7 +84,6 @@ void SensorHandler::SensorTasks() {
     if (fCapAfterSolenoid <= UPPER_THRESHOLD && fCapAfterSolenoid >= LOWER_THRESHOLD) {
       bDecapDoneState = true;
     }
-    SensorStateChanged();
   }
 }
 
@@ -99,14 +100,7 @@ void SensorHandler::SensorTest()
 
 
 bool SensorHandler::EncoderUeberpruefen() {
-
-  if (rotationCount == erwartetCount || rotationCount == (erwartetCount + 1) || rotationCount == (erwartetCount - 1)) {
-    rotationCount = 0;
-  } else {
-    return false;
-  }
-
-    return true;
+return false;
 }
 
 
@@ -122,12 +116,12 @@ void SensorHandler::SensorStateChanged() {
         
         // Wenn ein Loch erkannt wird, erhöhen Sie die Umdrehungszahl
         if (currentState == true) {
-            rotationCount++;
+            iEncoderCounter++;
         }
     }
 }
 
 void SensorHandler::EncoderCounterReset()
 {
-    erwartetCount = 0;
+    iEncoderCounter = 0;
 }
