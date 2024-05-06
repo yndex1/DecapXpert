@@ -20,8 +20,8 @@ class Roundabouthandler {
         Roundabouthandler(SensorHandler &sensorHandler);
         DigitalOut doMotorOutput;
         int iIncrementCounter();
-        int iIncrementValue;
-        int iSensorToBelt;
+        
+        int iSensorToBelt = 20;
         void startMotor();
         void stopMotor();
         //Thread variables
@@ -31,8 +31,10 @@ class Roundabouthandler {
         Ticker ticker;
         void sendThreadFlag();
         void running();
+        int iIncrementValue;
     private:
         SensorHandler &sensorHandler;
+        
 };
 
 #endif

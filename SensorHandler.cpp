@@ -18,13 +18,13 @@ LOWER_THRESHOLD(500.0f)
 {
     thread.start(callback(this, &SensorHandler::SensorTasks));
     ticker.attach(callback(this, &SensorHandler::sendThreadFlag), PERIOD);
-    volatile int iEncoderCounter= 0;
+    
 }
 
-const float SensorHandler::PERIOD = 0.2f;                  // period of task, given in [s]
+const float SensorHandler::PERIOD = 0.002f;                  // period of task, given in [s]
 // Sensor Pin
 DigitalIn sensorPin(PC_8); // Beispiel-Pin, an dem der Sensor angeschlossen ist
-
+int iEncoderCounter= 0;
 // Anzahl der Löcher auf der Scheibe
 const int holeCount = 90;
 
@@ -109,12 +109,10 @@ return false;
 // Funktion, die jedes Mal aufgerufen wird, wenn sich der Zustand des Sensors ändert
 void SensorHandler::SensorStateChanged() {
     bool currentState = sensorPin.read();
-    
     // Überprüfen Sie, ob sich der Zustand des Sensors geändert hat
     if (currentState != previousState) {
         previousState = currentState;
         
-        // Wenn ein Loch erkannt wird, erhöhen Sie die Umdrehungszahl
         if (currentState == true) {
             iEncoderCounter++;
         }

@@ -24,53 +24,9 @@
     {
         "module": "MotorHandler.o",
         "size": {
-            ".text": 1136,
+            ".text": 254,
             ".data": 0,
             ".bss": 36,
-            ".text-delta": 12,
-            ".data-delta": 0,
-            ".bss-delta": 0
-        }
-    },
-    {
-        "module": "PM2_Libary\\EncoderCounter.o",
-        "size": {
-            ".text": 668,
-            ".data": 0,
-            ".bss": 0,
-            ".text-delta": 0,
-            ".data-delta": 0,
-            ".bss-delta": 0
-        }
-    },
-    {
-        "module": "PM2_Libary\\FastPWM",
-        "size": {
-            ".text": 694,
-            ".data": 0,
-            ".bss": 0,
-            ".text-delta": 0,
-            ".data-delta": 0,
-            ".bss-delta": 0
-        }
-    },
-    {
-        "module": "PM2_Libary\\LowpassFilter.o",
-        "size": {
-            ".text": 736,
-            ".data": 0,
-            ".bss": 0,
-            ".text-delta": 0,
-            ".data-delta": 0,
-            ".bss-delta": 0
-        }
-    },
-    {
-        "module": "PM2_Libary\\SpeedController.o",
-        "size": {
-            ".text": 804,
-            ".data": 0,
-            ".bss": 0,
             ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
@@ -90,7 +46,7 @@
     {
         "module": "RoundaboutHandler.o",
         "size": {
-            ".text": 534,
+            ".text": 598,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -101,7 +57,7 @@
     {
         "module": "SensorHandler.o",
         "size": {
-            ".text": 1022,
+            ".text": 1014,
             ".data": 0,
             ".bss": 29,
             ".text-delta": 0,
@@ -112,7 +68,7 @@
     {
         "module": "Solenoid.o",
         "size": {
-            ".text": 124,
+            ".text": 72,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -123,7 +79,7 @@
     {
         "module": "[lib]\\c_w.l",
         "size": {
-            ".text": 11347,
+            ".text": 11325,
             ".data": 16,
             ".bss": 348,
             ".text-delta": 0,
@@ -134,7 +90,7 @@
     {
         "module": "[lib]\\fz_wm.l",
         "size": {
-            ".text": 2614,
+            ".text": 34,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -167,7 +123,7 @@
     {
         "module": "[lib]\\m_wm.l",
         "size": {
-            ".text": 664,
+            ".text": 48,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -189,10 +145,10 @@
     {
         "module": "main.o",
         "size": {
-            ".text": 628,
+            ".text": 568,
             ".data": 4,
             ".bss": 189,
-            ".text-delta": 8,
+            ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
         }
@@ -211,7 +167,7 @@
     {
         "module": "mbed-os\\connectivity",
         "size": {
-            ".text": 401,
+            ".text": 395,
             ".data": 0,
             ".bss": 0,
             ".text-delta": 0,
@@ -222,7 +178,7 @@
     {
         "module": "mbed-os\\drivers",
         "size": {
-            ".text": 1596,
+            ".text": 1434,
             ".data": 0,
             ".bss": 40,
             ".text-delta": 0,
@@ -266,9 +222,9 @@
     {
         "module": "mbed-os\\targets",
         "size": {
-            ".text": 15677,
+            ".text": 12122,
             ".data": 8,
-            ".bss": 1196,
+            ".bss": 1124,
             ".text-delta": 0,
             ".data-delta": 0,
             ".bss-delta": 0
@@ -276,10 +232,10 @@
     },
     {
         "summary": {
-            "static_ram": 10266,
+            "static_ram": 10194,
             "static_ram_delta": 0,
-            "total_flash": 60185,
-            "total_flash_delta": 20
+            "total_flash": 49404,
+            "total_flash_delta": 0
         }
     }
 ]

@@ -1,18 +1,17 @@
 #include <RoundaboutHandler.h>
 
 Roundabouthandler::Roundabouthandler(SensorHandler &sensorHandler):sensorHandler(sensorHandler), doMotorOutput(PB_12)
-{
+{    
+    startMotor();
     thread.start(callback(this, &Roundabouthandler::running));
     ticker.attach(callback(this, &Roundabouthandler::sendThreadFlag), PERIOD);
-    int iIncrementValue = sensorHandler.iEncoderCounter;
-    
 
 }
-const float Roundabouthandler::PERIOD = 0.2f;
-int iSensorToBelt = 5;
+const float Roundabouthandler::PERIOD = 0.1f;
+
+
 Roundabouthandler::~Roundabouthandler() {
-    
-    ticker.detach();
+        ticker.detach();
 }
 void Roundabouthandler::sendThreadFlag() {
     
@@ -36,16 +35,18 @@ void Roundabouthandler::stopMotor()
 
 void Roundabouthandler::running()
 {
-    printf("iIncrementValue: %i\n", iIncrementValue);
+    
     while(true)
     {
         ThisThread::flags_wait_any(threadFlag);
         
+        int iIncrementValue = sensorHandler.iEncoderCounter;
+        printf("iIncrementValue: %i iSensorToBelt: %i\n", iIncrementValue, iSensorToBelt);
         
-        if(iIncrementValue == iSensorToBelt)
+        if(iIncrementValue  >= iSensorToBelt)
         {
             stopMotor();
-            //ThisThread::sleep_for(2s);
+            ThisThread::sleep_for(2s);
             iIncrementValue = 0;
             sensorHandler.EncoderCounterReset();
             startMotor();

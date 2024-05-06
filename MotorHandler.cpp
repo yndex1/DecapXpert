@@ -48,6 +48,7 @@ void MotorHandler::MotorStop()
 void MotorHandler::MotorEnable()
 {
     doEnable_motors = 1;
+
 }
 /**
  * This method is called by the ticker timer interrupt service routine.
@@ -73,27 +74,22 @@ void MotorHandler::MotorTasks()
 
     if(bDecapState)
     {
-        //MUSS BELT SEIN ROUNDABOUT FÜR TEST
-        //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_ROUNDABOUT);
         speedController_MBelt.setDesiredSpeedRPS(SPEED_BELT);
     }
     else
     {
-        //MUSS BELT SEIN ROUNDABOUT FÜR TEST
-        //speedController_MRoundabout.setDesiredSpeedRPS(SPEED_STOP);
+
         speedController_MBelt.setDesiredSpeedRPS(SPEED_STOP);
     }
-    //if(bDecapDoneState){
-    //    speedController_MBelt.setDesiredSpeedRPS(SPEED_STOP);
-    //}
 
+    /*
     if(bSolenoidState){
         
         Solenoid.set();
         ThisThread::sleep_for(500ms);
         Solenoid.reset();
     }
-
-//printf("motortasks\r\n");
+    */
+printf("motortasks\r\n");
   }
 }

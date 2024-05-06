@@ -47,9 +47,9 @@ int main()
 
     //Sensorhandler and Motorhandler start
     SensorHandler SensorHandlerObjekt;
-    MotorHandler MotorHandlerObjekt(SensorHandlerObjekt.bDecapState, SensorHandlerObjekt.bSolenoidState, SensorHandlerObjekt.bDecapDoneState);
+    //MotorHandler MotorHandlerObjekt(SensorHandlerObjekt.bDecapState, SensorHandlerObjekt.bSolenoidState, SensorHandlerObjekt.bDecapDoneState);
     Roundabouthandler RoundabouthandlerObjekt(SensorHandlerObjekt);
-
+    //DigitalIn Pin(PC_8);
 
     while (true) { // this loop will run forever
 
@@ -67,25 +67,23 @@ int main()
         switch (iState) {
             case START: {
             printf("Task START\r\n");
-            MotorHandlerObjekt.MotorEnable();
-            //encoderOK = SensorHandlerObjekt.EncoderUeberpruefen();
-
-    
-            MotorHandlerObjekt.MotorTasks();
+            //MotorHandlerObjekt.MotorEnable();
+            //printf("currentState: %i", SensorHandlerObjekt.currentState);
+            //printf("iEncoderCounter: %i\n" , SensorHandlerObjekt.iEncoderCounter);
             break;
             }
             case STOP: {
-            SensorHandlerObjekt.EncoderCounterReset();
-            MotorHandlerObjekt.MotorStop();
-            RoundabouthandlerObjekt.stopMotor();
+            //SensorHandlerObjekt.EncoderCounterReset();
+            //MotorHandlerObjekt.MotorStop();
+            //RoundabouthandlerObjekt.stopMotor();
             printf("Task STOP\r\n");
             break;
             }
 
             case TEST:{
               //AnalogIn AI1(PC_2); 1000.0f * 3.3f * AI1.read()
-            //test.set();
-            //DigitalIn Pin(PC_8);
+
+            
             //printf("Eingang: %i\n", Pin.read());
             
 
