@@ -41,17 +41,17 @@ void Roundabouthandler::running()
         ThisThread::flags_wait_any(threadFlag);
         
         int iIncrementValue = sensorHandler.iEncoderCounter;
-        printf("iIncrementValue: %i iSensorToBelt: %i\n", iIncrementValue, iSensorToBelt);
-        
-        if(iIncrementValue  >= iSensorToBelt)
-        {
+        //printf("iIncrementValue: %i iSensorToBelt: %i\n", iIncrementValue, iSensorToBelt);
+        if (sensorHandler.bDecapState == true) {
+          if (iIncrementValue >= iSensorToBelt) {
             stopMotor();
             ThisThread::sleep_for(2s);
             iIncrementValue = 0;
             sensorHandler.EncoderCounterReset();
             startMotor();
+            sensorHandler.bDecapState = false;
+          }
         }
-
     }
 
 }

@@ -7,14 +7,10 @@ bSolenoidState(false),
 bDecapDoneState(false), 
 AI(PC_3), 
 SensorDecap(AI), 
-diTubeDetection(PB_2),  
-aiCapAfterDecapping(PC_2),
-aiCapAfterSolenoid(PC_5),
-senTubeDetection(diTubeDetection),
-senCapAfterDecapping(aiCapAfterDecapping),
-senCapAfterSolenoid(aiCapAfterSolenoid),
+senTubeDetection(PC_2),  
 UPPER_THRESHOLD(1000.0f),
-LOWER_THRESHOLD(500.0f)
+LOWER_THRESHOLD(500.0f),
+fTubeDetection(0.0f)
 {
     thread.start(callback(this, &SensorHandler::SensorTasks));
     ticker.attach(callback(this, &SensorHandler::sendThreadFlag), PERIOD);
@@ -63,18 +59,20 @@ void SensorHandler::SensorTasks() {
     ThisThread::flags_wait_any(threadFlag);
     
 
-    bool bTubeDetection = senTubeDetection.read();
-    float fCapAfterDecapping = senCapAfterDecapping.read();
-    float fCapAfterSolenoid = senCapAfterSolenoid.read();
+    fTubeDetection = 1.0e3f * senTubeDetection.read() * 3.3f;
 
     //printf("Sensortasks\r\n");
-    bDecapState = true;
-    SensorStateChanged();
-    if (bTubeDetection == true) {
+    if(bDecapState == true){
+        SensorStateChanged();
+        }
+    
+    if (fTubeDetection > 0 && fTubeDetection < 400) {
+        bDecapState = true;
         //SensorStateChanged();
     //  printf("decapStateTrue\r\n");
       //bDecapState = false;
     }
+
     //else bDecapState = false;
 
     if (fCapAfterDecapping <= UPPER_THRESHOLD && fCapAfterDecapping >= LOWER_THRESHOLD) {

@@ -47,7 +47,7 @@ int main()
 
     //Sensorhandler and Motorhandler start
     SensorHandler SensorHandlerObjekt;
-    //MotorHandler MotorHandlerObjekt(SensorHandlerObjekt.bDecapState, SensorHandlerObjekt.bSolenoidState, SensorHandlerObjekt.bDecapDoneState);
+    MotorHandler MotorHandlerObjekt(SensorHandlerObjekt.bDecapState, SensorHandlerObjekt.bSolenoidState, SensorHandlerObjekt.bDecapDoneState);
     Roundabouthandler RoundabouthandlerObjekt(SensorHandlerObjekt);
     //DigitalIn Pin(PC_8);
 
@@ -63,7 +63,7 @@ int main()
         }
 
         //activate Test case for testing
-        //iState = TEST;
+        iState = TEST;
         switch (iState) {
             case START: {
             printf("Task START\r\n");
@@ -81,10 +81,12 @@ int main()
             }
 
             case TEST:{
-              //AnalogIn AI1(PC_2); 1000.0f * 3.3f * AI1.read()
-
+            AnalogIn AI1(PC_2);
+            //float ir_distance_mV = 1.0e3f * AI1.read() * 3.3f;
+            float ir_distance_mV = SensorHandlerObjekt.fTubeDetection;
+            bool state = SensorHandlerObjekt.bDecapState;
             
-            //printf("Eingang: %i\n", Pin.read());
+            printf("Eingang: %f\n DecapState: %i\n", ir_distance_mV, state);
             
 
               break;

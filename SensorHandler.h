@@ -22,19 +22,14 @@ public:
   bool bDecapDoneState;
   AnalogIn AI;
   IRSensor SensorDecap;
-  DigitalIn diTubeDetection;
-  AnalogIn aiCapAfterDecapping;
-  AnalogIn aiCapAfterSolenoid;
-  IRSensorDigital senTubeDetection;
-  IRSensor senCapAfterDecapping;
-  IRSensor senCapAfterSolenoid;
+  AnalogIn senTubeDetection;
   int iEncoderCounter;
   bool currentState;
-
+  float fTubeDetection;
 
 private:
   // Ein / Ausgänge definieren
-  bool bTubeDetection;
+  //float fTubeDetection;
   float fCapAfterDecapping;
   float fCapAfterSolenoid;
   const float UPPER_THRESHOLD;
