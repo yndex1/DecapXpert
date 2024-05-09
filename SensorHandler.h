@@ -19,13 +19,18 @@ public:
   void EncoderCounterReset();
   bool bDecapState;
   bool bSolenoidState;
+  bool bFluessigkeit;
   bool bDecapDoneState;
-  AnalogIn AI;
-  IRSensor SensorDecap;
   AnalogIn senTubeDetection;
+  AnalogIn senTubeAfterBeltDetection;
+  AnalogIn senTubeFluessigkeit;
+  AnalogIn senTubeBeforeSolenoid;
   int iEncoderCounter;
   bool currentState;
   float fTubeDetection;
+  float fTubeAfterBelt;
+  float fTubeFluessigkeit;
+  float fTubeBeforeSolenoid;
 
 private:
   // Ein / Ausgänge definieren

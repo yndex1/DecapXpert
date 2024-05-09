@@ -63,11 +63,12 @@ int main()
         }
 
         //activate Test case for testing
-        iState = TEST;
+        //iState = TEST;
         switch (iState) {
             case START: {
             printf("Task START\r\n");
-            //MotorHandlerObjekt.MotorEnable();
+            MotorHandlerObjekt.MotorEnable();
+            printf("decapState: %i", SensorHandlerObjekt.bDecapState);
             //printf("currentState: %i", SensorHandlerObjekt.currentState);
             //printf("iEncoderCounter: %i\n" , SensorHandlerObjekt.iEncoderCounter);
             break;
@@ -81,12 +82,13 @@ int main()
             }
 
             case TEST:{
-            AnalogIn AI1(PC_2);
-            //float ir_distance_mV = 1.0e3f * AI1.read() * 3.3f;
-            float ir_distance_mV = SensorHandlerObjekt.fTubeDetection;
+
+            float ir_distance_mV1 = SensorHandlerObjekt.fTubeBeforeSolenoid;
+            float ir_distance_mV = SensorHandlerObjekt.fTubeAfterBelt;
             bool state = SensorHandlerObjekt.bDecapState;
             
-            printf("Eingang: %f\n DecapState: %i\n", ir_distance_mV, state);
+            //printf("Eingang1: %f\n Eingang2: %f\n", ir_distance_mV, ir_distance_mV1);
+            
             
 
               break;

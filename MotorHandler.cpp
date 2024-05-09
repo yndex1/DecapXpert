@@ -82,6 +82,13 @@ void MotorHandler::MotorTasks()
         speedController_MBelt.setDesiredSpeedRPS(SPEED_STOP);
     }
 
+    if(bSolenoidState){
+        ThisThread::sleep_for(500ms);
+        solenoid = 1;
+        ThisThread::sleep_for(1000ms);
+        solenoid = 0;
+        bSolenoidState = 0;
+    }
     /*
     if(bSolenoidState){
         
@@ -90,6 +97,6 @@ void MotorHandler::MotorTasks()
         Solenoid.reset();
     }
     */
-printf("motortasks\r\n");
+//printf("motortasks\r\n");
   }
 }
