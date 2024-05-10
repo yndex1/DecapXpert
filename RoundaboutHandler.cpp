@@ -2,12 +2,11 @@
 
 Roundabouthandler::Roundabouthandler(SensorHandler &sensorHandler):sensorHandler(sensorHandler), doMotorOutput(PB_12)
 {    
-    startMotor();
     thread.start(callback(this, &Roundabouthandler::running));
     ticker.attach(callback(this, &Roundabouthandler::sendThreadFlag), PERIOD);
 
 }
-const float Roundabouthandler::PERIOD = 0.1f;
+const float Roundabouthandler::PERIOD = 0.05f;
 
 
 Roundabouthandler::~Roundabouthandler() {
@@ -42,7 +41,7 @@ void Roundabouthandler::running()
         
         int iIncrementValue = sensorHandler.iEncoderCounter;
         //printf("iIncrementValue: %i iSensorToBelt: %i\n", iIncrementValue, iSensorToBelt);
-        if (sensorHandler.bDecapState == true) {
+        if (sensorHandler.bDecapState == true && sensorHandler.bWithCapState == true) {
           if (iIncrementValue >= iSensorToBelt) {
             stopMotor();
             ThisThread::sleep_for(2s);
@@ -50,6 +49,7 @@ void Roundabouthandler::running()
             sensorHandler.EncoderCounterReset();
             startMotor();
             sensorHandler.bDecapState = false;
+            sensorHandler.bWithCapState = false;
           }
         }
     }

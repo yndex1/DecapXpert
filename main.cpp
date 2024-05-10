@@ -63,14 +63,25 @@ int main()
         }
 
         //activate Test case for testing
-        //iState = TEST;
+        //iState = TEST; 
         switch (iState) {
             case START: {
+
+            if(SensorHandlerObjekt.bDecapState == false && SensorHandlerObjekt.bWithCapState == true){
+            SensorHandlerObjekt.bWithCapState = false;
+            RoundabouthandlerObjekt.stopMotor();
+            SensorHandlerObjekt.doLedFault = 1;
+            iState = STOP;
+            do_execute_main_task = false;
+            }else{
+            RoundabouthandlerObjekt.startMotor();
+            SensorHandlerObjekt.doLedFault = 0;
             printf("Task START\r\n");
             MotorHandlerObjekt.MotorEnable();
-            printf("decapState: %i", SensorHandlerObjekt.bDecapState);
+            //printf("decapState: %i \n withCapState: %i\n", SensorHandlerObjekt.bDecapState, SensorHandlerObjekt.bWithCapState);
             //printf("currentState: %i", SensorHandlerObjekt.currentState);
             //printf("iEncoderCounter: %i\n" , SensorHandlerObjekt.iEncoderCounter);
+            }
             break;
             }
             case STOP: {
@@ -84,11 +95,12 @@ int main()
             case TEST:{
 
             float ir_distance_mV1 = SensorHandlerObjekt.fTubeBeforeSolenoid;
-            float ir_distance_mV = SensorHandlerObjekt.fTubeAfterBelt;
+            float ir_distance_mV = SensorHandlerObjekt.fTubeBeforeBelt;
             bool state = SensorHandlerObjekt.bDecapState;
             
             //printf("Eingang1: %f\n Eingang2: %f\n", ir_distance_mV, ir_distance_mV1);
-            
+            DigitalOut out(PA_12);
+            out = 1;
             
 
               break;

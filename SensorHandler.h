@@ -18,17 +18,19 @@ public:
   void SensorStateChanged();
   void EncoderCounterReset();
   bool bDecapState;
+  bool bWithCapState;
   bool bSolenoidState;
   bool bFluessigkeit;
   bool bDecapDoneState;
   AnalogIn senTubeDetection;
-  AnalogIn senTubeAfterBeltDetection;
+  AnalogIn senTubeBeforeBelt;
   AnalogIn senTubeFluessigkeit;
   AnalogIn senTubeBeforeSolenoid;
+  DigitalOut doLedFault;
   int iEncoderCounter;
   bool currentState;
   float fTubeDetection;
-  float fTubeAfterBelt;
+  float fTubeBeforeBelt;
   float fTubeFluessigkeit;
   float fTubeBeforeSolenoid;
 

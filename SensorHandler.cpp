@@ -2,31 +2,31 @@
 #include <EncoderCounter.h>
 
 SensorHandler::SensorHandler(): 
-bDecapState(false), 
+bDecapState(false),
+bWithCapState(false),
 bSolenoidState(false), 
 bDecapDoneState(false),  
 senTubeDetection(PC_2),
-senTubeAfterBeltDetection(PC_3),
+senTubeBeforeBelt(PC_3),
 senTubeFluessigkeit(PC_5), 
 senTubeBeforeSolenoid(PB_1), 
 UPPER_THRESHOLD(1000.0f),
 LOWER_THRESHOLD(500.0f),
 fTubeDetection(0.0f),
 fTubeFluessigkeit(0.0f),
-fTubeAfterBelt(0.0f),
-fTubeBeforeSolenoid(0.0f)
+fTubeBeforeBelt(0.0f),
+fTubeBeforeSolenoid(0.0f),
+doLedFault(PA_12)
 {
     thread.start(callback(this, &SensorHandler::SensorTasks));
     ticker.attach(callback(this, &SensorHandler::sendThreadFlag), PERIOD);
     
 }
 
-const float SensorHandler::PERIOD = 0.002f;                  // period of task, given in [s]
+const float SensorHandler::PERIOD = 0.001f;                  // period of task, given in [s]
 // Sensor Pin
 DigitalIn sensorPin(PC_8); // Beispiel-Pin, an dem der Sensor angeschlossen ist
 int iEncoderCounter= 0;
-// Anzahl der Löcher auf der Scheibe
-const int holeCount = 90;
 
 // Zähler für die Umdrehungen
 
@@ -64,12 +64,12 @@ void SensorHandler::SensorTasks() {
     
 
     fTubeDetection = 1.0e3f * senTubeDetection.read() * 3.3f;
-    fTubeAfterBelt = 1.0e3f * senTubeAfterBeltDetection.read() * 3.3f;
+    fTubeBeforeBelt = 1.0e3f * senTubeBeforeBelt.read() * 3.3f;
     fTubeFluessigkeit = 1.0e3f * senTubeFluessigkeit.read() * 3.3f;
     fTubeBeforeSolenoid = 1.0e3f * senTubeBeforeSolenoid.read() * 3.3f;
 
     //printf("Sensortasks\r\n");
-    if(bDecapState == true){
+    if(bDecapState == true && bWithCapState == true){
         SensorStateChanged();
         }
     if (fTubeDetection > 0 && fTubeDetection < 400) {
@@ -83,12 +83,10 @@ void SensorHandler::SensorTasks() {
         bSolenoidState = true;
     }
 
-    if (fTubeFluessigkeit > 0 && fTubeFluessigkeit < 700)
+    if(fTubeBeforeBelt > 2250 && fTubeBeforeBelt < 2450)
     {
-        bFluessigkeit = true;
-
+        bWithCapState = true;
     }
-    //else bDecapState = false;
 
     
 

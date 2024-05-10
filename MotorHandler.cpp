@@ -89,14 +89,6 @@ void MotorHandler::MotorTasks()
         solenoid = 0;
         bSolenoidState = 0;
     }
-    /*
-    if(bSolenoidState){
-        
-        Solenoid.set();
-        ThisThread::sleep_for(500ms);
-        Solenoid.reset();
-    }
-    */
 //printf("motortasks\r\n");
   }
 }

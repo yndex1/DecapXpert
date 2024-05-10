@@ -21,7 +21,7 @@ class Roundabouthandler {
         DigitalOut doMotorOutput;
         int iIncrementCounter();
         
-        int iSensorToBelt = 40;
+        int iSensorToBelt = 17;
         void startMotor();
         void stopMotor();
         //Thread variables
