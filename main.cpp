@@ -65,29 +65,35 @@ int main()
         //activate Test case for testing
         //iState = TEST; 
         switch (iState) {
-            case START: {
+        case START: {
 
-            if(SensorHandlerObjekt.bDecapState == false && SensorHandlerObjekt.bWithCapState == true){
+          if (SensorHandlerObjekt.bDecapState == false &&
+              SensorHandlerObjekt.bWithCapState == true) {
             SensorHandlerObjekt.bWithCapState = false;
             RoundabouthandlerObjekt.stopMotor();
             SensorHandlerObjekt.doLedFault = 1;
             iState = STOP;
             do_execute_main_task = false;
-            }else{
-            RoundabouthandlerObjekt.startMotor();
+          } else {
+
+            if (SensorHandlerObjekt.bDecapState != true) {
+              RoundabouthandlerObjekt.startMotor();
+            }
             SensorHandlerObjekt.doLedFault = 0;
             printf("Task START\r\n");
             MotorHandlerObjekt.MotorEnable();
-            //printf("decapState: %i \n withCapState: %i\n", SensorHandlerObjekt.bDecapState, SensorHandlerObjekt.bWithCapState);
-            //printf("currentState: %i", SensorHandlerObjekt.currentState);
-            //printf("iEncoderCounter: %i\n" , SensorHandlerObjekt.iEncoderCounter);
-            }
-            break;
-            }
+            // printf("decapState: %i \n withCapState: %i\n",
+            // SensorHandlerObjekt.bDecapState,
+            // SensorHandlerObjekt.bWithCapState); printf("currentState: %i",
+            // SensorHandlerObjekt.currentState);
+            printf("iEncoderCounter: %i\n", SensorHandlerObjekt.iEncoderCounter);
+          }
+          break;
+        }
             case STOP: {
             //SensorHandlerObjekt.EncoderCounterReset();
             //MotorHandlerObjekt.MotorStop();
-            //RoundabouthandlerObjekt.stopMotor();
+            RoundabouthandlerObjekt.stopMotor();
             printf("Task STOP\r\n");
             break;
             }
